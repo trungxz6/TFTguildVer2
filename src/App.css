@@ -2,4 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--body-font);
+}
+
+body {
+  color: var(--text-clr);
+  background: var(--bg-clr);
+}
+
+.ant-tabs-nav::before {
+  border: none !important;
 }
