@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'BeaufortforLOL-Regular';
+  src: local('BeaufortforLOL-Regular'), url('./fonts/BeaufortforLOL-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Spiegel_TT_Regular';
+  src: local('Spiegel_TT_Regular'), url('./fonts/Spiegel_TT_Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+:root {
+  --head-font: 'BeaufortforLOL-Regular';
+  --body-font: 'Spiegel_TT_Regular';
+
+  --primary-clr: #d47559;
+  --bg-clr: #111111;
+  --text-clr: #fef6f3;
+  --text-highlight-clr: #ffb60d;
+  --btn-clr: #fe9439;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--body-font);
+}
+
+body {
+  color: var(--text-clr);
+  background: var(--bg-clr);
+}
