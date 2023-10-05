@@ -1,3 +1,4 @@
+import iconAD from '../assets/icon/iconAd.svg'
 interface BaseItem {
   name: string
   desc: string
@@ -31,6 +32,7 @@ interface CombinedItem {
   name: string
   desc: string
   tier: string
+  stat: string[]
   src: string
   recipe: BaseItem[]
 }
@@ -153,6 +155,7 @@ export const Classes = [
   {
     name: 'Juggernaut',
     src: 'https://rerollcdn.com/icons/juggernaut.png',
+    type: 'Class',
     desc: 'Juggernaut champions take less damage as their Health decreases.',
     level: [
       { point: 2, desc: '15% to 25% damage reduction' },
@@ -163,6 +166,7 @@ export const Classes = [
   {
     name: 'Slayer',
     src: 'https://rerollcdn.com/icons/slayer.png',
+    type: 'Class',
     desc: 'Slayers gain 12% Omnivamp. Slayers deal bonus damage, doubled against units below 66% Health.',
     level: [
       { point: 2, desc: '6% bonus damage' },
@@ -177,6 +181,16 @@ export const CombinedItems = [
     name: 'Bloodthirster',
     desc: 'Gain 20% Omnivamp. Once per combat at 40% Health, gain a 25% maximum Health Shield that lasts up to 5 seconds. Omnivamp: heal for some of damage dealt',
     tier: 'S',
+    stat: [
+      {
+        name: 'Damage',
+        stat: '+20%',
+      },
+      {
+        name: 'MR',
+        stat: '20%',
+      },
+    ],
     src: 'https://rerollcdn.com/items/Bloodthirster.png',
     recipe: [BaseItems[0], BaseItems[4]],
   },
@@ -222,8 +236,7 @@ export const Champions = [
       img: 'https://rerollcdn.com/abilities/9.5/aatrox-world-ender.png',
       name: 'World Ender',
       type: 'Active',
-      detail:
-        'Transform for 12 seconds, gaining 10% Omnivamp. While transformed, attacks deal 80% Speedbonus + % Physical damage.',
+      detail: `Transform for 12 seconds, gaining 10% Omnivamp. While transformed, attacks deal 80% Speedbonus + % Physical damage.`,
       other: [
         {
           name: 'Damage',

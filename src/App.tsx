@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
+import ItemPopup from './components/ItemPopup'
 
 function App() {
   return (
@@ -17,6 +18,10 @@ function App() {
         <Route
           path='/champion'
           element={<ChampionInfo />}
+        />
+        <Route
+          path='/item'
+          element={<ItemPopup />}
         />
       </Routes>
       <Footer />
