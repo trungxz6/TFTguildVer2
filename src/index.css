@@ -18,11 +18,12 @@
   --head-font: 'BeaufortforLOL-Regular';
   --body-font: 'Spiegel_TT_Regular';
 
-  --primary-clr: #d47559;
   --bg-clr: #0d202b;
   --bg-highlight-clr: #102531;
   --text-clr: #fef6f3;
+  --text-blur-clr: #d1d1d1;
   --text-highlight-clr: #ffb60d;
-  --btn-clr: #fe9439;
+  --primary-clr: #fe9439;
+  --btn-clr: #0bc4e2;
   --border-clr: #17313a;
 }

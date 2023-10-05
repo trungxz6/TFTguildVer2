@@ -64,7 +64,7 @@ const Header: React.FC = () => {
           <SearchBar />
           <Button
             type='primary'
-            className='bg-[#0BC4E2]'
+            className='bg-[#0BC4E2] text-[var(--text-clr)]'
           >
             DOWNLOAD
           </Button>
