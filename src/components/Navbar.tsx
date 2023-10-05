@@ -5,35 +5,35 @@ import type { TabsProps } from 'antd'
 const items: TabsProps['items'] = [
   {
     key: 'team comps',
-    label: <span className='text-[var(--text-highlight-clr)] text-lg uppercase'>Team Comps</span>,
+    label: <span className='text-[var(--text-highlight-clr)] uppercase'>Team Comps</span>,
   },
   {
     key: 'meta report',
-    label: <span className='text-[var(--text-highlight-clr)] text-lg uppercase'>Meta Report</span>,
+    label: <span className='text-[var(--text-highlight-clr)] uppercase'>Meta Report</span>,
   },
   {
     key: 'champions',
-    label: <span className='text-[var(--text-highlight-clr)] text-lg uppercase'>Champions</span>,
+    label: <span className='text-[var(--text-highlight-clr)] uppercase'>Champions</span>,
   },
   {
     key: 'tier lists',
-    label: <span className='text-[var(--text-highlight-clr)] text-lg uppercase'>Tier Lists</span>,
+    label: <span className='text-[var(--text-highlight-clr)] uppercase'>Tier Lists</span>,
   },
   {
     key: 'itam builder',
-    label: <span className='text-[var(--text-highlight-clr)] text-lg uppercase'>Item Builder</span>,
+    label: <span className='text-[var(--text-highlight-clr)] uppercase'>Item Builder</span>,
   },
   {
     key: 'team builder',
-    label: <span className='text-[var(--text-highlight-clr)] text-lg uppercase'>Team Builder</span>,
+    label: <span className='text-[var(--text-highlight-clr)] uppercase'>Team Builder</span>,
   },
   {
     key: 'database',
-    label: <span className='text-[var(--text-highlight-clr)] text-lg uppercase'>Database</span>,
+    label: <span className='text-[var(--text-highlight-clr)] uppercase'>Database</span>,
   },
   {
     key: 'patch notes',
-    label: <span className='text-[var(--text-highlight-clr)] text-lg uppercase'>Patch Notes</span>,
+    label: <span className='text-[var(--text-highlight-clr)] uppercase'>Patch Notes</span>,
   },
 ]
 
@@ -43,9 +43,8 @@ const Navbar: React.FC = () => {
       theme={{
         components: {
           Tabs: {
-            inkBarColor: 'var(--btn-clr)',
+            inkBarColor: 'var(--primary-clr)',
             cardHeight: 48,
-            horizontalItemGutter: 69,
             horizontalMargin: '0',
           },
         },

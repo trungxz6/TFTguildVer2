@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
           Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League
           of Legends © Riot Games, Inc.
         </span>
-        <span className='text-[var(--text-highlight-clr)]'>© 2023 TFT TOP 8</span>
+        <span className='text-[var(--text-highlight-clr)] mb-4'>© 2023 TFT TOP 8</span>
       </div>
     </>
   )
