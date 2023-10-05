@@ -14,6 +14,10 @@ function App() {
           path='/'
           element={<Home />}
         />
+        <Route
+          path='/champion'
+          element={<ChampionInfo />}
+        />
       </Routes>
       <Footer />
     </BrowserRouter>

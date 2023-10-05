@@ -1,3 +1,40 @@
+interface OriginLevel {
+  point: number
+  desc: string
+}
+
+interface Origin {
+  name: string
+  src: string
+  desc: string
+  level: OriginLevel[]
+}
+
+interface ChampionStats {
+  Cost: string
+  Health: string
+  Mana: string
+  Armor: string
+  MR: string
+  AbilityPower: string
+  DPS: string
+  Damage: string
+  AtkSpd: string
+  CritRate: string
+  Range: string
+}
+
+interface Champion {
+  id: number
+  origin: Origin[]
+  class: string[]
+  src: string
+  alt: string
+  tier: string
+  itemBuild: string[]
+  stats: ChampionStats
+}
+
 export const BaseItems = [
   {
     name: 'B.F. Sword',
@@ -63,6 +100,45 @@ export const BaseItems = [
   },
 ]
 
+export const Origins = [
+  {
+    name: 'Darkin',
+    type: 'Origin',
+    src: 'https://rerollcdn.com/icons/darkin.png',
+    desc: '',
+    level: [
+      {
+        point: 1,
+        desc: `Darkin are possessed by a weapon. When they die, the weapon possesses the nearest ally champion, granting them the weapon's power.`,
+      },
+      { point: 2, desc: `Weapon powers become 50% stronger` },
+    ],
+  },
+]
+
+export const Classes = [
+  {
+    name: 'Juggernaut',
+    src: 'https://rerollcdn.com/icons/juggernaut.png',
+    desc: 'Juggernaut champions take less damage as their Health decreases.',
+    level: [
+      { point: 2, desc: '15% to 25% damage reduction' },
+      { point: 4, desc: '20% to 35% damage reduction' },
+      { point: 6, desc: '35% to 50% damage reduction' },
+    ],
+  },
+  {
+    name: 'Slayer',
+    src: 'https://rerollcdn.com/icons/slayer.png',
+    desc: 'Slayers gain 12% Omnivamp. Slayers deal bonus damage, doubled against units below 66% Health.',
+    level: [
+      { point: 2, desc: '6% bonus damage' },
+      { point: 4, desc: '20% bonus damage' },
+      { point: 6, desc: '40% bonus damage' },
+    ],
+  },
+]
+
 export const CombinedItems = [
   {
     name: 'Bloodthirster',
@@ -87,11 +163,11 @@ export const CombinedItems = [
   },
 ]
 
-export const champion = [
+export const Champion = [
   {
     id: 1,
-    origin: ['Darkin'],
-    class: ['Juggernaut', 'Slayer'],
+    origin: [Origins[0]],
+    class: [Classes[0], Classes[1]],
     src: `https://rerollcdn.com/characters/Skin/9.5/Aatrox.png`,
     alt: 'Aatrox',
     tier: 'A',
