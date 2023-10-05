@@ -1,8 +1,8 @@
-import React from 'react'
-import logo from '../assets/logo/logo.png'
-import { Select, Button, ConfigProvider } from 'antd'
-import SearchBar from './SearchBar'
 import Navbar from './Navbar'
+import SearchBar from './SearchBar'
+import logo from '../assets/logo/logo.png'
+import { Link } from 'react-router-dom'
+import { Select, Button, ConfigProvider } from 'antd'
 
 const Header: React.FC = () => {
   const { Option } = Select
@@ -23,8 +23,12 @@ const Header: React.FC = () => {
       theme={{
         components: {
           Select: {
-            colorBorder: 'none',
-            colorBgContainer: 'var(--btn-clr)',
+            colorText: 'var(--btn-clr)',
+            colorBorder: 'var(--border-clr)',
+            colorBgContainer: 'var(--bg-highlight-clr)',
+            colorBgElevated: 'var(--bg-clr)',
+            colorTextPlaceholder: '#666',
+            optionSelectedBg: 'var(--bg-highlight-clr)',
           },
         },
       }}
@@ -32,13 +36,21 @@ const Header: React.FC = () => {
       <div className='bg-[var(--bg-clr)] h-12'>
         <div className='max-w-[1280px] h-full mx-auto flex items-center justify-between'>
           <div className='flex items-center'>
-            <img
-              className='w-[68px]'
-              src={logo}
-              alt='logo'
-            />
-            <span className='text-2xl font-bold text-[var(--text-highlight-clr)] mr-8'>TFT TOP 8</span>
-            <Select defaultValue='9.5'>
+            <Link
+              to='/'
+              className='flex items-center no-underline'
+            >
+              <img
+                className='w-[68px]'
+                src={logo}
+                alt='logo'
+              />
+              <span className='text-2xl font-bold text-[var(--text-highlight-clr)] mr-8'>TFT TOP 8</span>
+            </Link>
+            <Select
+              defaultValue='9.5'
+              className='w-[100px]'
+            >
               {Options.map((option, index) => (
                 <Option
                   key={index}
@@ -50,7 +62,12 @@ const Header: React.FC = () => {
             </Select>
           </div>
           <SearchBar />
-          <Button type='primary'>DOWNLOAD</Button>
+          <Button
+            type='primary'
+            className='bg-[#0BC4E2]'
+          >
+            DOWNLOAD
+          </Button>
         </div>
         <Navbar />
       </div>
