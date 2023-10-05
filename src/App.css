@@ -2,6 +2,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #0d202b;
-  color: white;
+  font-family: var(--body-font);
+}
+
+body {
+  color: var(--text-clr);
+  background: var(--bg-clr);
+}
+
+.ant-tabs-nav::before {
+  border: none !important;
+}
+
+.ant-select-arrow {
+  color: #666 !important;
 }

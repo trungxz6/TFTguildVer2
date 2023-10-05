@@ -1,13 +1,22 @@
 import './App.css'
 import ChampionInfo from './pages/ChampionInfo'
 import Home from './pages/Home'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import { Route, Routes, BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
-    <div>
-      {/* <Home /> */}
-      <ChampionInfo />
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route
+          path='/'
+          element={<Home />}
+        />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   )
 }
 
