@@ -1,38 +1,71 @@
-interface OriginLevel {
-  point: number
+interface BaseItem {
+  name: string
   desc: string
+  src: string
+  icon?: string
+  into: BaseItem[]
 }
 
 interface Origin {
   name: string
+  type: string
   src: string
   desc: string
-  level: OriginLevel[]
+  level: {
+    point: number
+    desc: string
+  }[]
 }
 
-interface ChampionStats {
-  Cost: string
-  Health: string
-  Mana: string
-  Armor: string
-  MR: string
-  AbilityPower: string
-  DPS: string
-  Damage: string
-  AtkSpd: string
-  CritRate: string
-  Range: string
+interface Class {
+  name: string
+  src: string
+  desc: string
+  level: {
+    point: number
+    desc: string
+  }[]
 }
 
-interface Champion {
+interface CombinedItem {
+  name: string
+  desc: string
+  tier: string
+  src: string
+  recipe: BaseItem[]
+}
+
+interface Champions {
   id: number
   origin: Origin[]
-  class: string[]
+  class: Class[]
   src: string
   alt: string
   tier: string
-  itemBuild: string[]
-  stats: ChampionStats
+  itemBuild: CombinedItem[]
+  stats: {
+    Cost: string
+    Health: string
+    Mana: string
+    Armor: string
+    MR: string
+    AbilityPower: string
+    DPS: string
+    Damage: string
+    AtkSpd: string
+    CritRate: string
+    Range: string
+  }
+  abilities: {
+    img: string
+    name: string
+    type: string
+    detail: string
+    other: {
+      name: string
+      param: string
+    }[]
+  }
 }
 
 export const BaseItems = [
@@ -163,7 +196,7 @@ export const CombinedItems = [
   },
 ]
 
-export const Champion = [
+export const Champions = [
   {
     id: 1,
     origin: [Origins[0]],

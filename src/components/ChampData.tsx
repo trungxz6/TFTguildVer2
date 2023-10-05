@@ -1,10 +1,10 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { Avatar } from 'antd'
-import { Champion, Origins } from '../data/Data'
+import { BaseItems, Origins, Classes, CombinedItems, Champions } from '../data/Data'
 
 const ChampData: React.FC = () => {
-  const AatroxData = Champion[0]
+  const AatroxData = Champions[0]
   const AatroxOrigin = AatroxData.origin[0]
 
   return (
@@ -137,21 +137,25 @@ const ChampData: React.FC = () => {
           <div className='ml-[30px] bg-transparent'>
             <div className='flex justify-between items-center bg-transparent'>
               <div className='mb-[20px] bg-transparent'>
-                <div className='bg-transparent mb-[10px] '>{AatroxData.origin[0].name}</div>
-                <div className='bg-transparent text-[#88A0A7] '>{AatroxData.origin[0].type}</div>
+                <div className='bg-transparent mb-[10px] '>{Origins[0].name}</div>
+                <div className='bg-transparent text-[#88A0A7] '>{Origins[0].type}</div>
               </div>
             </div>
-            <div className='flex items-center'>
-              <Avatar
-                style={{ backgroundColor: 'transparent', border: '1px #1F485F solid', color: '#88a0a7', width: '30px' }}
-              >
-                {AatroxData.origin[0].level[0].point}
-              </Avatar>
-              <div className='bg-transparent text-[#88A0A7] ml-[20px]'>{AatroxData.origin[0].level[0].desc}</div>
+            <div className='flex items-center mb-[10px]'>
+              <div className='border rounded-full border-[#1F485F] border-solid text-[#88a0a7] h-[30px] w-[30px] text-sm justify-center flex items-center'>
+                {Origins[0].level[0].point}
+              </div>
+              {typeof AatroxData.origin[0] !== 'string' && (
+                <span className='bg-transparent text-white w-fit ml-[20px]'>{AatroxData.origin[0].level[0].desc}</span>
+              )}
             </div>
-            <div className='bg-transparent mb-[10px]'>
-              <span className='text-[#88A0A7]'>{AatroxData.abilities.other[0].name}:</span>
-              <span className='ml-[5px]'>{AatroxData.abilities.other[0].param}</span>
+            <div className='flex items-center mb-[10px]'>
+              <div className='border rounded-full border-[#1F485F] border-solid text-[#88a0a7] h-[30px] w-[30px] text-sm justify-center flex items-center'>
+                {Origins[0].level[1].point}
+              </div>
+              {typeof AatroxData.origin[0] !== 'string' && (
+                <span className='bg-transparent text-white w-fit ml-[20px]'>{AatroxData.origin[0].level[1].desc}</span>
+              )}
             </div>
           </div>
         </div>
