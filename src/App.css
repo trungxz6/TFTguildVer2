@@ -13,3 +13,7 @@ body {
 .ant-tabs-nav::before {
   border: none !important;
 }
+
+.ant-select-arrow {
+  color: #666 !important;
+}
