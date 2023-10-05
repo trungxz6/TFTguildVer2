@@ -1,4 +1,6 @@
-import iconAD from '../assets/icon/iconAd.svg'
+import Damage from '../assets/icon/iconAd.svg'
+import MR from '../assets/icon/iconMr.svg'
+
 interface BaseItem {
   name: string
   desc: string
@@ -179,15 +181,15 @@ export const Classes = [
 export const CombinedItems = [
   {
     name: 'Bloodthirster',
-    desc: 'Gain 20% Omnivamp. Once per combat at 40% Health, gain a 25% maximum Health Shield that lasts up to 5 seconds. Omnivamp: heal for some of damage dealt',
+    desc: `Gain 20% Omnivamp. Once per combat at 40% Health, gain a 25% maximum Health Shield that lasts up to 5 seconds. Omnivamp: heal for some of damage dealt`,
     tier: 'S',
     stat: [
       {
-        name: 'Damage',
+        icon: <img src={Damage} />,
         stat: '+20%',
       },
       {
-        name: 'MR',
+        icon: <img src={MR} />,
         stat: '20%',
       },
     ],
@@ -236,7 +238,11 @@ export const Champions = [
       img: 'https://rerollcdn.com/abilities/9.5/aatrox-world-ender.png',
       name: 'World Ender',
       type: 'Active',
-      detail: `Transform for 12 seconds, gaining 10% Omnivamp. While transformed, attacks deal 80% Speedbonus + % Physical damage.`,
+      detail: `Transform for 12 seconds, gaining 10% Omnivamp. While transformed, attacks deal 80% Speedbonus + % ${(
+        <span>
+          <img src={Damage} />
+        </span>
+      )} Physical damage.`,
       other: [
         {
           name: 'Damage',
