@@ -1,17 +1,23 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { Avatar, Popover, ConfigProvider, Divider } from 'antd'
-import { BaseItems, Origins, Classes, CombinedItems, Champions } from '../data/Data'
+import { BaseItems, Origins, Classes, CombinedItems, Champions, Synergies } from '../data/Data'
 import partners from '../assets/images/partners-bg.png'
 import ItemPopup from './ItemPopup'
 import ChampPopup from './ChampPopup'
 
 const infoMenu = ['Health', 'Mana', 'Armor', 'MR', 'AbilityPower', 'DPS', 'Damage', 'AtkSpd', 'CritRate', 'Range']
+const AatroxData = Champions[0]
+
+const trait = [...AatroxData.origin, ...AatroxData.class]
+
+// GET SYNERGIES
+const FilterSynergiesChamp = Synergies.map((syn) => {
+  const filteredChamp = syn.champ.filter((champ) => champ !== Champions[0])
+  return { name: syn.name, champ: filteredChamp }
+})
 
 const ChampData: React.FC = () => {
-  const AatroxData = Champions[0]
-  const trait = [...AatroxData.origin, ...AatroxData.class]
-
   return (
     <ConfigProvider
       theme={{
@@ -27,7 +33,7 @@ const ChampData: React.FC = () => {
       <div>
         {/* ADs */}
         <img
-          className='mt-[100px] mb-[50px] w-3/5 mx-auto flex'
+          className=' mb-[50px] w-3/5 mx-auto flex'
           src={partners}
         />
         <div className='w-3/5 mx-auto flex mb-[50px] font-semibold'>
@@ -205,22 +211,64 @@ const ChampData: React.FC = () => {
                   <div className='bg-transparent flex justify-start items-center'>
                     {typeof item !== 'string' && (
                       <img
+                        onClick={() => console.log(item)}
                         className='w-[32px] h-[32px] mr-[20px] bg-transparent'
                         src={item.src}
                       />
                     )}
-                    <img
-                      className='w-[50px] h-[50px] my-[5px] mx-[10px] border border-yellow-400 border-solid bg-transparent hover:border-orange-500 transition ease duration-300'
-                      src={AatroxData.src}
-                    />
-                    <img
-                      className='w-[50px] h-[50px] my-[5px] mx-[10px] border border-yellow-400 border-solid bg-transparent hover:border-orange-500 transition ease duration-300'
-                      src={AatroxData.src}
-                    />
-                    <img
-                      className='w-[50px] h-[50px] my-[5px] mx-[10px] border border-yellow-400 border-solid bg-transparent hover:border-orange-500 transition ease duration-300'
-                      src={AatroxData.src}
-                    />
+                    {FilterSynergiesChamp.map((he, idx) => {
+                      if (item === he.name) {
+                        // RETURN TO A MAP FUNCTION UNDER HEREEEEEE - TO BE CONTINUE
+                        return he.champ.map((synChamp) => {
+                          return (
+                            <Popover
+                              placement='top'
+                              content={() => {
+                                return (
+                                  <ChampPopup
+                                    origin={synChamp.origin}
+                                    class={synChamp.class}
+                                    src={synChamp.src}
+                                    alt={synChamp.alt}
+                                    tier={synChamp.tier}
+                                    itemBuild={synChamp.itemBuild}
+                                    stats={{
+                                      Cost: `${synChamp.stats.Cost}`,
+                                      Health: `${synChamp.stats.Health}`,
+                                      Mana: `${synChamp.stats.Mana}`,
+                                      Armor: `${synChamp.stats.Armor}`,
+                                      MR: `${synChamp.stats.MR}`,
+                                      AbilityPower: `${synChamp.stats.AbilityPower}`,
+                                      DPS: `${synChamp.stats.DPS}`,
+                                      Damage: `${synChamp.stats.Damage}`,
+                                      AtkSpd: `${synChamp.stats.AtkSpd}`,
+                                      CritRate: `${synChamp.stats.CritRate}`,
+                                      Range: `${synChamp.stats.Range}`,
+                                    }}
+                                    abilities={{
+                                      img: `${synChamp.abilities.img}`,
+                                      name: `${synChamp.abilities.name}`,
+                                      type: `${synChamp.abilities.type}`,
+                                      detail: `${synChamp.abilities.detail}`,
+                                      other: synChamp.abilities.other,
+                                    }}
+                                  ></ChampPopup>
+                                )
+                              }}
+                              arrow={false}
+                              key={index}
+                            >
+                              <img
+                                onClick={() => console.log(synChamp.abilities.other)}
+                                key={idx}
+                                className='w-[50px] h-[50px] my-[5px] mx-[10px] border border-yellow-400 border-solid bg-transparent hover:border-orange-500 transition ease duration-300'
+                                src={synChamp.src}
+                              />
+                            </Popover>
+                          )
+                        })
+                      }
+                    })}
                   </div>
                 </div>
               )
