@@ -4,8 +4,7 @@ import ChampData from '../components/ChampData'
 
 const ChampionInfo = () => {
   return (
-    <div>
-      <Header />
+    <div className=''>
       <ChampData />
     </div>
   )

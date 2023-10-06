@@ -27,3 +27,7 @@
   --btn-clr: #0bc4e2;
   --border-clr: #17313a;
 }
+
+.ant-popover .ant-popover-inner {
+  padding: 0px;
+}
