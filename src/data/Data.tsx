@@ -151,6 +151,17 @@ export const Origins = [
       { point: 2, desc: `Weapon powers become 50% stronger` },
     ],
   },
+  {
+    name: 'Ionia',
+    type: 'Origin',
+    src: 'https://rerollcdn.com/icons/ionia.png',
+    desc: 'Each Ionian has a unique bonus within their Ability. Every 4 seconds, a number of Ionians are enlightened to their spirit form, gaining 20 Mana and doubling stat bonuses for 4 seconds.',
+    level: [
+      { point: 3, desc: `100% Ionian bonus, 1 enlightened` },
+      { point: 6, desc: `200% Ionian bonus, 2 enlightened` },
+      { point: 9, desc: `380% Ionian bonus, 4 enlightened` },
+    ],
+  },
 ]
 
 export const Classes = [
@@ -174,6 +185,18 @@ export const Classes = [
       { point: 2, desc: '6% bonus damage' },
       { point: 4, desc: '20% bonus damage' },
       { point: 6, desc: '40% bonus damage' },
+    ],
+  },
+  {
+    name: 'Sorcerer',
+    src: 'https://rerollcdn.com/icons/sorcerer.png',
+    type: 'Class',
+    desc: `Sorcerers gain bonus Ability Power. When an enemy dies after being damaged by a Sorcerer, they deal a percentage of that enemy's maximum Health to another enemy.`,
+    level: [
+      { point: 2, desc: '25 Ability Power; 7% max' },
+      { point: 4, desc: '50 Ability Power; 10% max' },
+      { point: 6, desc: '80 Ability Power; 12% max to 2 enemies' },
+      { point: 8, desc: '120 Ability Power; 15% max to 2 enemies' },
     ],
   },
 ]
@@ -273,12 +296,12 @@ export const Champions = [
   },
   {
     id: 2,
-    origin: ['Ionia'],
-    class: ['Sorcerer'],
+    origin: [Origins[1]],
+    class: [Classes[2]],
     src: `https://rerollcdn.com/characters/Skin/9.5/Ahri.png`,
     alt: 'Ahri',
     tier: 'A',
-    itemBuild: [],
+    itemBuild: [CombinedItems[0], CombinedItems[1], CombinedItems[2]],
     stats: {
       Cost: '5',
       Health: '850 / 1530 / 2754',
@@ -314,47 +337,111 @@ export const Champions = [
       ],
     },
   },
+  // {
+  //   id: 3,
+  //   origin: ['Targon'],
+  //   class: ['Gunner'],
+  //   src: `https://rerollcdn.com/characters/Skin/9.5/Aphelios.png`,
+  //   alt: 'Aphelios',
+  //   tier: 'A',
+  //   itemBuild: [],
+  //   stats: {
+  //     Cost: '4',
+  //     Health: '750 / 1350 / 2430',
+  //     Mana: '50 / 100',
+  //     Armor: '25',
+  //     MR: '25',
+  //     AbilityPower: '100',
+  //     DPS: '45 / 81 / 146',
+  //     Damage: '60 / 108 / 194',
+  //     AtkSpd: '0.75',
+  //     CritRate: '25%',
+  //     Range: '4',
+  //   },
+  //   abilities: {
+  //     img: 'https://rerollcdn.com/abilities/9.5/aphelios-moonlight-vigil.png',
+  //     name: 'Moonlight Vigil',
+  //     type: 'Active',
+  //     detail:
+  //       'Fire a moon blast at the largest group of enemies that deals physical damage to enemies within 2 hexes. For 7 seconds, equip 3 Chakram, plus 1 more for each enemy hit by the blast. Attacks deal bonus physical damage for each Chakram equipped. Aphelios heals for 75%Ability Powerof damage dealt by Chakrams.',
+  //     other: [
+  //       {
+  //         name: 'Moon Blast',
+  //         param: '240% / 240% / 750%',
+  //       },
+  //       {
+  //         name: 'Chakram Damage',
+  //         param: '7% / 7% / 15%',
+  //       },
+  //       {
+  //         name: 'Max Chakrams',
+  //         param: '10 / 12 / 20',
+  //       },
+  //     ],
+  //   },
+  // },
+  // {
+  //   id: 4,
+  //   origin: [Origins[0]],
+  //   class: [Classes[0], Classes[1]],
+  //   src: `https://rerollcdn.com/characters/Skin/9.5/Naafiri.png`,
+  //   alt: 'Naafiri',
+  //   tier: 'A',
+  //   itemBuild: [CombinedItems[0], CombinedItems[1], CombinedItems[2]],
+  //   stats: {
+  //     Cost: '5',
+  //     Health: '900 / 1620 / 2916',
+  //     Mana: '0 / 60',
+  //     Armor: '60',
+  //     MR: '60',
+  //     AbilityPower: '100',
+  //     DPS: '64 / 115 / 207',
+  //     Damage: '80 / 144 / 259',
+  //     AtkSpd: '0.8',
+  //     CritRate: '25%',
+  //     Range: '1',
+  //   },
+  //   abilities: {
+  //     img: 'https://rerollcdn.com/abilities/9.5/aatrox-world-ender.png',
+  //     name: 'World Ender',
+  //     type: 'Active',
+  //     detail: `Transform for 12 seconds, gaining 10% Omnivamp. While transformed, attacks deal 80% Speedbonus + % ${(
+  //       <span>
+  //         <img src={Damage} />
+  //       </span>
+  //     )} Physical damage.`,
+  //     other: [
+  //       {
+  //         name: 'Damage',
+  //         param: '250% / 250% / 2500%',
+  //       },
+  //     ],
+  //   },
+  // },
+]
+
+export const Synergies = [
   {
-    id: 3,
-    origin: ['Targon'],
-    class: ['Gunner'],
-    src: `https://rerollcdn.com/characters/Skin/9.5/Aphelios.png`,
-    alt: 'Aphelios',
-    tier: 'A',
-    itemBuild: [],
-    stats: {
-      Cost: '4',
-      Health: '750 / 1350 / 2430',
-      Mana: '50 / 100',
-      Armor: '25',
-      MR: '25',
-      AbilityPower: '100',
-      DPS: '45 / 81 / 146',
-      Damage: '60 / 108 / 194',
-      AtkSpd: '0.75',
-      CritRate: '25%',
-      Range: '4',
-    },
-    abilities: {
-      img: 'https://rerollcdn.com/abilities/9.5/aphelios-moonlight-vigil.png',
-      name: 'Moonlight Vigil',
-      type: 'Active',
-      detail:
-        'Fire a moon blast at the largest group of enemies that deals physical damage to enemies within 2 hexes. For 7 seconds, equip 3 Chakram, plus 1 more for each enemy hit by the blast. Attacks deal bonus physical damage for each Chakram equipped. Aphelios heals for 75%Ability Powerof damage dealt by Chakrams.',
-      other: [
-        {
-          name: 'Moon Blast',
-          param: '240% / 240% / 750%',
-        },
-        {
-          name: 'Chakram Damage',
-          param: '7% / 7% / 15%',
-        },
-        {
-          name: 'Max Chakrams',
-          param: '10 / 12 / 20',
-        },
-      ],
-    },
+    name: Origins[0],
+    champ: [Champions[0], Champions[1]],
+  },
+  {
+    name: Classes[0],
+    champ: [
+      Champions[0],
+      Champions[1],
+      Champions[1],
+      // 'Kayle', 'Mordekaiser', 'Qiyana', 'Quinn', 'Reksai'
+    ],
+  },
+  {
+    name: Classes[1],
+    champ: [
+      Champions[0],
+      Champions[1],
+      Champions[1],
+      Champions[1],
+      //  'Darius', 'Nasus', 'Nautilus', 'Sett', 'Warwick'
+    ],
   },
 ]
