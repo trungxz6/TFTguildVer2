@@ -200,6 +200,16 @@ export const CombinedItems = [
     name: `Sterak's Gage`,
     desc: 'Once per combat at 60% Health, gain 20% max Health and 35% Attack Damage.',
     tier: 'A',
+    stat: [
+      {
+        icon: <img src={Damage} />,
+        stat: '+30%',
+      },
+      {
+        icon: <img src={MR} />,
+        stat: '30%',
+      },
+    ],
     src: 'https://rerollcdn.com/items/SteraksGage.png',
     recipe: [BaseItems[0], BaseItems[2]],
   },
@@ -207,6 +217,16 @@ export const CombinedItems = [
     name: `Titan's Resolve`,
     desc: 'Gain 2% Attack Damage and 2 Ability Power when attacking or taking damage, stacking up to 25 times. At full stacks, gain 20 Armor and 20 Magic Resist.',
     tier: 'A',
+    stat: [
+      {
+        icon: <img src={Damage} />,
+        stat: '+40%',
+      },
+      {
+        icon: <img src={MR} />,
+        stat: '40%',
+      },
+    ],
     src: 'https://rerollcdn.com/items/TitansResolve.png',
     recipe: [BaseItems[1], BaseItems[5]],
   },

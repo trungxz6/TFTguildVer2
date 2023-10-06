@@ -4,8 +4,7 @@ import { Avatar, Popover, ConfigProvider, Divider } from 'antd'
 import { BaseItems, Origins, Classes, CombinedItems, Champions } from '../data/Data'
 import partners from '../assets/images/partners-bg.png'
 import ItemPopup from './ItemPopup'
-
-const content = <ItemPopup></ItemPopup>
+import ChampPopup from './ChampPopup'
 
 const infoMenu = ['Health', 'Mana', 'Armor', 'MR', 'AbilityPower', 'DPS', 'Damage', 'AtkSpd', 'CritRate', 'Range']
 
@@ -50,7 +49,18 @@ const ChampData: React.FC = () => {
                   return (
                     <Popover
                       placement='top'
-                      content={content}
+                      content={() => {
+                        return (
+                          <ItemPopup
+                            name={item.name}
+                            desc={item.desc}
+                            tier={item.tier}
+                            stat={item.stat}
+                            src={item.src}
+                            recipe={item.recipe}
+                          ></ItemPopup>
+                        )
+                      }}
                       arrow={false}
                       key={index}
                     >
@@ -84,7 +94,7 @@ const ChampData: React.FC = () => {
                     key={index}
                     className='text-[#88A0A7] mb-[10px] flex flex-row'
                   >
-                    {item}:{/* LOOP DATA TO GET MENU DETAIL */}
+                    {item}:{/* LOOP MENU TO GET MENU DETAIL */}
                     {Object.entries(AatroxData.stats).map(([key, value]) => {
                       if (item === key) {
                         return (

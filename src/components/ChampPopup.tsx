@@ -20,7 +20,7 @@ interface CombinedItem {
   recipe: BaseItem[]
 }
 
-const ItemPopup: React.FC<CombinedItem> = (CombinedItem) => {
+const ChampPopup: React.FC<CombinedItem> = (CombinedItem) => {
   return (
     <div className='border border-solid border-[#1f485f] text-[#fef6f3] font-semibold max-w-[500px]'>
       {/* IMAGE AND STAT */}
@@ -56,7 +56,7 @@ const ItemPopup: React.FC<CombinedItem> = (CombinedItem) => {
       <div className=' border-solid border border-t-[#1f485f] border-x-transparent border-b-transparent'></div>
       {/* RECIPE */}
       <div className='flex items-center p-[10px]'>
-        <div className='text-[#88A0A7]'>Recipe:</div>
+        <div className='text-[#88A0A7]'>Item:</div>
         {CombinedItem.recipe.map((baseItem, idx) => {
           return (
             <img
@@ -71,4 +71,4 @@ const ItemPopup: React.FC<CombinedItem> = (CombinedItem) => {
   )
 }
 
-export default ItemPopup
+export default ChampPopup
