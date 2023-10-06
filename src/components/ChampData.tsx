@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { Avatar, Popover, ConfigProvider, Divider } from 'antd'
+import { Avatar, Popover, ConfigProvider } from 'antd'
 import { BaseItems, Origins, Classes, CombinedItems, Champions, Synergies } from '../data/Data'
 import partners from '../assets/images/partners-bg.png'
 import ItemPopup from './ItemPopup'
