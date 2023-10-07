@@ -1,12 +1,28 @@
 import Damage from '../assets/icon/iconAd.svg'
 import MR from '../assets/icon/iconMr.svg'
 
+interface Stat {
+  icon: JSX.Element
+  stat: string
+}
+
 interface BaseItem {
   name: string
   desc: string
   src: string
-  icon?: string
-  into: BaseItem[]
+  stat?: {
+    icon: JSX.Element
+    stat: string
+  }[]
+}
+
+interface CombinedItem {
+  name: string
+  desc: string
+  tier: string
+  stat?: string[]
+  src: string
+  recipe: BaseItem[]
 }
 
 interface Origin {
@@ -28,15 +44,6 @@ interface Class {
     point: number
     desc: string
   }[]
-}
-
-interface CombinedItem {
-  name: string
-  desc: string
-  tier: string
-  stat: string[]
-  src: string
-  recipe: BaseItem[]
 }
 
 interface Champions {
@@ -78,62 +85,101 @@ export const BaseItems = [
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/BFSword.png',
     icon: 'https://rerollcdn.com/ui/icon-ad.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={Damage} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Chain Vest',
     desc: '20 Armor.',
     src: 'https://rerollcdn.com/items/ChainVest.png',
     icon: 'https://rerollcdn.com/ui/icon-ar.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={Damage} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: `Giant's Belt`,
     desc: '150 Health.',
     src: 'https://rerollcdn.com/items/GiantsBelt.png',
     icon: 'https://rerollcdn.com/ui/icon-hp.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={Damage} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Needlessly Large Rod',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/NeedlesslyLargeRod.png',
     icon: 'https://rerollcdn.com/ui/icon-ap.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={Damage} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Negatron Cloak',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/NegatronCloak.png',
     icon: 'https://rerollcdn.com/ui/icon-mr.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={Damage} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Recurve Bow',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/RecurveBow.png',
     icon: 'https://rerollcdn.com/ui/icon-as.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={Damage} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Sparring Gloves',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/SparringGloves.png',
     icon: 'https://rerollcdn.com/ui/icon-cr.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={Damage} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Spatula',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/Spatula.png',
-    into: [],
   },
   {
     name: 'Tear of the Goddess',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/TearoftheGoddess.png',
     icon: 'https://rerollcdn.com/ui/icon-mana.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={Damage} />,
+        stat: '+10',
+      },
+    ],
   },
 ]
 

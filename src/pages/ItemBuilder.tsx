@@ -1,55 +1,121 @@
-import React from 'react'
+import React, { ReactNode, useState } from 'react'
 import partners from '../assets/images/partners-bg.png'
-import { Input, ConfigProvider } from 'antd'
+import { Input, Popover, ConfigProvider } from 'antd'
 import { CloseOutlined, SearchOutlined } from '@ant-design/icons'
 import { BaseItems, Origins, Classes, CombinedItems, Champions, Synergies } from '../data/Data'
-import { Table, Divider } from 'antd'
+import { Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
+import ItemPopup from '../components/ItemPopup'
+import Base from 'antd/es/typography/Base'
 
-interface DataType {
-  key: React.Key
+interface BaseItem {
   name: string
-  age: number
-  address: string
+  desc: string
+  src: string
+  stat?: {
+    icon: JSX.Element
+    stat: string
+  }[]
 }
 
-const columns: ColumnsType<DataType> = [
+interface CombinedItem {
+  name: string
+  desc: string
+  tier: string
+  stat?: {
+    icon: JSX.Element
+    stat: string
+  }[]
+  src: string
+  recipe: BaseItem[]
+}
+
+const columns: ColumnsType<CombinedItem> = [
   {
-    title: 'Name',
-    dataIndex: 'name',
+    title: 'Recipe',
+    dataIndex: 'recipe',
+    width: 160,
+    render: (recipe: BaseItem[]) => (
+      <div className='flex items-center'>
+        {recipe.map((item, index) => (
+          <img
+            className='h-[33px], w-[33px] mr-[10px] border border-solid border-[#17313a]'
+            key={index}
+            src={item.src}
+          />
+        ))}
+      </div>
+    ),
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
+    title: 'Combines Into',
+    dataIndex: ['src', 'name', 'desc'],
+    render: (_: any, record: CombinedItem): ReactNode => (
+      <div className='flex items-center'>
+        <Popover
+          placement='top'
+          content={() => {
+            return (
+              <ItemPopup
+                name={record.name}
+                desc={record.desc}
+                tier={record.tier}
+                stat={record.stat || []}
+                src={record.src}
+                recipe={record.recipe}
+              ></ItemPopup>
+            )
+          }}
+          arrow={false}
+          key={_}
+        >
+          <img
+            className='cursor-pointer h-[33px], w-[33px] mr-[10px] border border-solid border-[#17313a]'
+            src={record.src}
+            alt={record.name}
+          />
+        </Popover>
+        <div className='text-white'>{record.desc}</div>
+      </div>
+    ),
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
+    title: 'Tier',
+    dataIndex: 'tier',
+    width: 100,
+    render: (tier: string) => {
+      let bgColor = ''
+      if (tier === 'S') {
+        bgColor = 'bg-[#FF7F7F]'
+      } else if (tier === 'A') {
+        bgColor = 'bg-[#FFBF7F]'
+      } else if (tier === 'B') {
+        bgColor = 'bg-[#FFDF7F]'
+      } else if (tier === 'C') {
+        bgColor = 'bg-[#FFFF7F]'
+      } else if (tier === 'D') {
+        bgColor = 'bg-[#BFFF7F]'
+      } else if (tier === '?') {
+        bgColor = 'bg-[#7FFF7F]'
+      }
+      return (
+        <div className='flex justify-center items-center '>
+          <span className={`${bgColor} h-[25px] w-[25px] text-[15px] rounded-[2.5px] text-center`}>{tier}</span>
+        </div>
+      )
+    },
   },
 ]
 
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-  },
-]
+const data: CombinedItem[] = CombinedItems
 
 const ItemBuilder = () => {
+  const [choosedBaseItem, setChoosedBaseItem] = useState<BaseItem | CombinedItem>(BaseItems[0])
+
+  const handleChoosedItem = (newItem: BaseItem | CombinedItem) => {
+    setChoosedBaseItem(newItem)
+  }
+
   return (
     <ConfigProvider
       theme={{
@@ -70,13 +136,18 @@ const ItemBuilder = () => {
           },
           Table: {
             borderRadiusLG: 0,
-            colorBgBase: 'transparent',
-            colorBgContainer: 'transparent',
+            colorBgContainer: '#102531',
+            headerSplitColor: 'transparent',
+            headerColor: '#ffffff',
+            // rowHoverBg: '#ffffff',
+            // colorBorderSecondary: '#7FFF7F',
+            // borderColor: '#7FFF7F',
           },
         },
       }}
     >
       <div className='mt-[100px]'>
+        {/* ADS */}
         <img
           className=' mb-[50px] w-3/5 mx-auto flex'
           src={partners}
@@ -85,6 +156,7 @@ const ItemBuilder = () => {
           {/* LEFT COLUMN */}
           <div className='w-1/4 flex flex-col items-center mr-[30px]'>
             <div className='w-full text-2xl'>Choose an Item</div>
+            {/* SEARCH ITEM */}
             <Input
               className='my-[20px] h-[35px] border bg-transparent'
               placeholder='Search for an item...'
@@ -92,17 +164,45 @@ const ItemBuilder = () => {
               suffix={<CloseOutlined />}
               allowClear={true}
             />
+            {/* BASEITEM LIST */}
             <div className='w-full flex flex-col'>
               <div className=' border-[4px] border-b-[#D47559] border-solid border-t-transparent border-x-transparent w-fit pb-[15px] py-[10px]'>
                 Base Items
               </div>
               <div className='border-[1px] border-x-transparent border-b-transparent border-solid border-t-[#1f485f] mb-[20px]'></div>
+              <div className='w-full flex flex-wrap'>
+                {BaseItems.map((baseItem, index) => {
+                  return (
+                    <img
+                      onClick={() => handleChoosedItem(baseItem)}
+                      className='w-[38px] h-[38px] m-[4px] border border-solid border-transparent hover:border-red-500'
+                      key={index}
+                      src={baseItem.src}
+                      alt={baseItem.name}
+                    />
+                  )
+                })}
+              </div>
             </div>
+            {/* COMBINED ITEM LIST */}
             <div className='w-full flex flex-col'>
               <div className=' border-[4px] border-b-[#D47559] border-solid border-t-transparent border-x-transparent w-fit pb-[15px] py-[10px]'>
                 Combined Items
               </div>
               <div className='border-[1px] border-x-transparent border-b-transparent border-solid border-t-[#1f485f] mb-[20px]'></div>
+              <div className='w-full flex flex-wrap'>
+                {CombinedItems.map((combItem, index) => {
+                  return (
+                    <img
+                      onClick={() => handleChoosedItem(combItem)}
+                      className='w-[38px] h-[38px] m-[4px] border border-solid border-transparent hover:border-red-500'
+                      key={index}
+                      src={combItem.src}
+                      alt={combItem.name}
+                    />
+                  )
+                })}
+              </div>
             </div>
           </div>
           {/* RIGHT COLUMN */}
@@ -113,10 +213,10 @@ const ItemBuilder = () => {
             <div className='flex items-center mt-[20px]'>
               <img
                 className='w-[30px] h-[30px] mr-[15px]'
-                src={BaseItems[0].src}
-                alt={BaseItems[0].name}
+                src={choosedBaseItem.src}
+                alt={choosedBaseItem.name}
               />
-              <div>{BaseItems[0].name}</div>
+              <div>{choosedBaseItem.name}</div>
             </div>
             <Table
               className='mt-[20px]'

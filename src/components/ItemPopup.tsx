@@ -22,11 +22,10 @@ interface CombinedItem {
 
 const ItemPopup: React.FC<CombinedItem> = (CombinedItem) => {
   return (
-    <div className='border border-solid border-[#1f485f] text-[#fef6f3] font-semibold max-w-[500px]'>
+    <div className='bg-[#0D202B] border border-solid border-[#1f485f] text-[#fef6f3] font-semibold max-w-[500px]'>
       {/* IMAGE AND STAT */}
       <div className='flex items-center p-[10px]'>
         <img
-          onClick={() => console.log(CombinedItem)}
           className='w-[40px]'
           src={CombinedItem.src}
           alt={CombinedItem.name}
