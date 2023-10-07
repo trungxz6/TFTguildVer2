@@ -2,7 +2,7 @@ import Navbar from './Navbar'
 import SearchBar from './SearchBar'
 import logo from '../assets/logo/logo.png'
 import { Link } from 'react-router-dom'
-import { Select, Button, ConfigProvider } from 'antd'
+import { Select, Button, ConfigProvider, Input } from 'antd'
 
 const Header: React.FC = () => {
   const { Option } = Select

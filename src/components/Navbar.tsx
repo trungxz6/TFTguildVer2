@@ -1,14 +1,19 @@
 import React from 'react'
 import { Tabs, ConfigProvider } from 'antd'
 import type { TabsProps } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 const items: TabsProps['items'] = [
   {
-    key: 'team comps',
+    key: '',
+    label: <span className='text-[var(--text-highlight-clr)] uppercase'>Home</span>,
+  },
+  {
+    key: 'team-comps',
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Team Comps</span>,
   },
   {
-    key: 'meta report',
+    key: 'meta-report',
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Meta Report</span>,
   },
   {
@@ -16,15 +21,15 @@ const items: TabsProps['items'] = [
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Champions</span>,
   },
   {
-    key: 'tier lists',
+    key: 'tier-lists',
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Tier Lists</span>,
   },
   {
-    key: 'itam builder',
+    key: 'itam-builder',
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Item Builder</span>,
   },
   {
-    key: 'team builder',
+    key: 'team-builder',
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Team Builder</span>,
   },
   {
@@ -32,12 +37,17 @@ const items: TabsProps['items'] = [
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Database</span>,
   },
   {
-    key: 'patch notes',
+    key: 'patch-notes',
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Patch Notes</span>,
   },
 ]
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate()
+  const onChange = (key: string) => {
+    navigate(`/${key}`)
+  }
+
   return (
     <ConfigProvider
       theme={{
@@ -53,9 +63,10 @@ const Navbar: React.FC = () => {
       <div className='bg-[var(--bg-highlight-clr)] border-[1px] border-solid border-[var(--border-clr)] border-l-0 border-r-0'>
         <div className='max-w-[1280px] h-full mx-auto'>
           <Tabs
-            defaultActiveKey='team comps'
+            defaultActiveKey=''
             items={items}
             centered
+            onChange={onChange}
           />
         </div>
       </div>

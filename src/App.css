@@ -17,3 +17,29 @@ body {
 .ant-select-arrow {
   color: #666 !important;
 }
+
+#hexGrid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  overflow: hidden;
+  font-size: 15px;
+  list-style-type: none;
+  background-color: #666;
+}
+
+.hexagon {
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+.ant-menu-submenu-title {
+  /* padding-left: 0 !important; */
+  /* padding-inline: 0 !important; */
+  margin-inline: 0 !important;
+}
+
+.ant-menu-item {
+  padding-left: 32px !important;
+}

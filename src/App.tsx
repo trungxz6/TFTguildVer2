@@ -1,10 +1,10 @@
 import './App.css'
-import ChampionInfo from './pages/ChampionInfo'
+import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import Home from './pages/Home'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import { Route, Routes, BrowserRouter } from 'react-router-dom'
-import ItemPopup from './components/ItemPopup'
+import ChampionInfo from './pages/ChampionInfo'
+import TeamComps from './pages/TeamComps'
 
 function App() {
   return (
@@ -16,12 +16,12 @@ function App() {
           element={<Home />}
         />
         <Route
-          path='/champion'
-          element={<ChampionInfo />}
+          path='/team-comps'
+          element={<TeamComps />}
         />
         <Route
-          path='/item'
-          element={<ItemPopup />}
+          path='/champion'
+          element={<ChampionInfo />}
         />
       </Routes>
       <Footer />
