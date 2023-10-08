@@ -1,7 +1,7 @@
 import React from 'react'
 import type { MenuProps } from 'antd'
 import { RiSearchLine } from 'react-icons/ri'
-import { Menu, ConfigProvider, Select, Input } from 'antd'
+import { Menu, ConfigProvider, Select, Input, Space } from 'antd'
 import TeamCompsCard from '../components/TeamCompsCard'
 
 const PlayStyleItem: React.FC<{ style: string }> = (props) => {
@@ -202,9 +202,13 @@ const TeamComps: React.FC = () => {
             />
           </div>
           <SortBy />
-          <div>
+          <>
             <TeamCompsCard />
-          </div>
+            <TeamCompsCard />
+            <TeamCompsCard />
+            <TeamCompsCard />
+            <TeamCompsCard />
+          </>
         </div>
       </div>
     </ConfigProvider>

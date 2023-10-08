@@ -67,95 +67,95 @@ const ChessBoard: React.FC<{
       {(size === 'large' && (
         <div className='relative'>
           <div className='flex'>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile1}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile1}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile2}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile2}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile3}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile3}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile4}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile4}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile5}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile5}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile6}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile6}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile7}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile7}</div>
             </div>
           </div>
           <div className='flex absolute top-[97px] left-[58px]'>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile8}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile8}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile9}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile9}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile10}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile10}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile11}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile11}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile12}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile12}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile13}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile13}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile14}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile14}</div>
             </div>
           </div>
           <div className='flex absolute top-[194px]'>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile15}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile15}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile16}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile16}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile17}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile17}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile18}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile18}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile19}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile19}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile20}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile20}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile21}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile21}</div>
             </div>
           </div>
           <div className='flex absolute top-[291px] left-[58px]'>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile22}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile22}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile23}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile23}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile24}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile24}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile25}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile25}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile26}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile26}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile27}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile27}</div>
             </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
-              <div className='bg-[var(--bg-highlight-clr)] w-[100px] h-[110px] hexagon'>{tile28}</div>
+            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
+              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile28}</div>
             </div>
           </div>
         </div>
@@ -163,95 +163,95 @@ const ChessBoard: React.FC<{
         (size === 'small' && (
           <div className='relative'>
             <div className='flex'>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile1}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile1}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile2}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile2}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile3}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile3}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile4}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile4}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile5}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile5}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile6}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile6}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile7}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile7}</div>
               </div>
             </div>
             <div className='flex absolute top-[32px] left-[19px]'>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile8}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile8}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile9}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile9}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile10}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile10}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile11}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile11}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile12}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile12}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile13}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile13}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile14}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile14}</div>
               </div>
             </div>
             <div className='flex absolute top-[64px]'>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile15}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile15}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile16}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile16}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile17}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile17}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile18}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile18}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile19}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile19}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile20}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile20}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile21}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile21}</div>
               </div>
             </div>
             <div className='flex absolute top-[96px] left-[19px]'>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile22}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile22}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile23}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile23}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile24}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile24}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile25}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile25}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile26}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile26}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile27}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile27}</div>
               </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
-                <div className='bg-[var(--bg-highlight-clr)] w-[31px] h-[34px] hexagon'>{tile28}</div>
+              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
+                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile28}</div>
               </div>
             </div>
           </div>

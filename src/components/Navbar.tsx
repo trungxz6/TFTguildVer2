@@ -25,7 +25,7 @@ const items: TabsProps['items'] = [
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Tier Lists</span>,
   },
   {
-    key: 'itam-builder',
+    key: 'item-builder',
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Item Builder</span>,
   },
   {
