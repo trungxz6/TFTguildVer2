@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useState, useEffect } from 'react'
 import partners from '../assets/images/partners-bg.png'
 import { Input, Popover, ConfigProvider } from 'antd'
 import { CloseOutlined, SearchOutlined } from '@ant-design/icons'
@@ -6,7 +6,6 @@ import { BaseItems, Origins, Classes, CombinedItems, Champions, Synergies } from
 import { Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import ItemPopup from '../components/ItemPopup'
-import Base from 'antd/es/typography/Base'
 
 interface BaseItem {
   name: string
@@ -30,91 +29,141 @@ interface CombinedItem {
   recipe: BaseItem[]
 }
 
-const columns: ColumnsType<CombinedItem> = [
-  {
-    title: 'Recipe',
-    dataIndex: 'recipe',
-    width: 160,
-    render: (recipe: BaseItem[]) => (
-      <div className='flex items-center'>
-        {recipe.map((item, index) => (
-          <img
-            className='h-[33px], w-[33px] mr-[10px] border border-solid border-[#17313a]'
-            key={index}
-            src={item.src}
-          />
-        ))}
-      </div>
-    ),
-  },
-  {
-    title: 'Combines Into',
-    dataIndex: ['src', 'name', 'desc'],
-    render: (_: any, record: CombinedItem): ReactNode => (
-      <div className='flex items-center'>
-        <Popover
-          placement='top'
-          content={() => {
-            return (
-              <ItemPopup
-                name={record.name}
-                desc={record.desc}
-                tier={record.tier}
-                stat={record.stat || []}
-                src={record.src}
-                recipe={record.recipe}
-              ></ItemPopup>
-            )
-          }}
-          arrow={false}
-          key={_}
-        >
-          <img
-            className='cursor-pointer h-[33px], w-[33px] mr-[10px] border border-solid border-[#17313a]'
-            src={record.src}
-            alt={record.name}
-          />
-        </Popover>
-        <div className='text-white'>{record.desc}</div>
-      </div>
-    ),
-  },
-  {
-    title: 'Tier',
-    dataIndex: 'tier',
-    width: 100,
-    render: (tier: string) => {
-      let bgColor = ''
-      if (tier === 'S') {
-        bgColor = 'bg-[#FF7F7F]'
-      } else if (tier === 'A') {
-        bgColor = 'bg-[#FFBF7F]'
-      } else if (tier === 'B') {
-        bgColor = 'bg-[#FFDF7F]'
-      } else if (tier === 'C') {
-        bgColor = 'bg-[#FFFF7F]'
-      } else if (tier === 'D') {
-        bgColor = 'bg-[#BFFF7F]'
-      } else if (tier === '?') {
-        bgColor = 'bg-[#7FFF7F]'
-      }
-      return (
-        <div className='flex justify-center items-center '>
-          <span className={`${bgColor} h-[25px] w-[25px] text-[15px] rounded-[2.5px] text-center`}>{tier}</span>
-        </div>
-      )
-    },
-  },
-]
+// GÍA TRỊ BAN ĐẦU CỦA TABLE DATA
+const itemsWithBaseItem0 = CombinedItems.filter((item) => item.recipe.includes(BaseItems[0]))
 
-const data: CombinedItem[] = CombinedItems
+// TẠO MẢNG TỔNG HỢP GỒM MẢNG BASE VÀ COMB ITEM
+const totalItem = [...BaseItems, ...CombinedItems]
 
 const ItemBuilder = () => {
-  const [choosedBaseItem, setChoosedBaseItem] = useState<BaseItem | CombinedItem>(BaseItems[0])
+  const [choosedItem, setChoosedItem] = useState<BaseItem | CombinedItem>(BaseItems[0])
+  const [CombinedItemByChoose, setCombinedItemByChoose] = useState(itemsWithBaseItem0)
+  const [searchBaseItemData, setSearchBaseItemData] = useState<BaseItem[]>(BaseItems)
+  const [searchCombinedItemData, setSearchCombinedItemData] = useState<CombinedItem[]>(CombinedItems)
+  const [searchValue, setSearchValue] = useState('')
 
+  useEffect(() => {
+    setCombinedItemByChoose(ListCombinedItem)
+  }, [choosedItem])
+
+  useEffect(() => {
+    const foundBaseItem = BaseItems.filter((item) =>
+      item.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+    )
+    setSearchBaseItemData(foundBaseItem)
+    const foundCombItem = CombinedItems.filter((item) =>
+      item.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+    )
+    setSearchCombinedItemData(foundCombItem)
+  }, [searchValue])
+
+  // TÌM ITEM KHÔNG ĐƯỢC CHỌN TỪ MẢNG TỔNG ĐỂ LÀM CSS
+  const unChoosedItem = totalItem.filter((item) => item !== choosedItem)
+
+  //KIỂM TRA XEM BIẾN STATE choosedItem THUỘC MẢNG NÀO ĐỂ TRẢ RA DATA CHO TABLE
+  const ListCombinedItem = CombinedItems.filter((item) => {
+    if ('recipe' in choosedItem) {
+      return item === choosedItem
+    } else {
+      return item.recipe && item.recipe.some((recipeItem) => recipeItem.name === choosedItem.name)
+    }
+  })
+
+  //HÀM ONCLICK ĐỂ THAY ĐỔI BIẾN STATE choosedItem
   const handleChoosedItem = (newItem: BaseItem | CombinedItem) => {
-    setChoosedBaseItem(newItem)
+    setChoosedItem(newItem)
   }
+
+  const handleSearchValue = (searchTerm: string) => {
+    setSearchValue(searchTerm)
+    // BaseItems.map((item,index)=>{
+    //   const foundBaseItem = item.filter((name)=>name.toLocaleLowerCase().includes)
+    // })
+    // const foundBaseItem = BaseItems.filter((item) =>
+    //   item.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+    // )
+    // setSearchBaseItemData(foundBaseItem)
+    // console.log(foundBaseItem)
+  }
+
+  // SETUP TABLE
+  const columns: ColumnsType<CombinedItem> = [
+    {
+      title: 'Recipe',
+      dataIndex: 'recipe',
+      width: 160,
+      render: (recipe: BaseItem[]) => (
+        <div className='flex items-center'>
+          {recipe.map((item, index) => (
+            <img
+              onClick={() => handleChoosedItem(item)}
+              className='cursor-pointer h-[33px], w-[33px] mr-[10px] border border-solid border-[#17313a]'
+              key={index}
+              src={item.src}
+            />
+          ))}
+        </div>
+      ),
+    },
+    {
+      title: 'Combines Into',
+      dataIndex: ['src', 'name', 'desc'],
+      render: (_: any, record: CombinedItem): ReactNode => (
+        <div className='flex items-center'>
+          <Popover
+            placement='top'
+            content={() => {
+              return (
+                <ItemPopup
+                  name={record.name}
+                  desc={record.desc}
+                  tier={record.tier}
+                  stat={record.stat || []}
+                  src={record.src}
+                  recipe={record.recipe}
+                ></ItemPopup>
+              )
+            }}
+            arrow={false}
+            key={_}
+          >
+            <img
+              className='cursor-pointer h-[33px], w-[33px] mr-[10px] border border-solid border-[#17313a]'
+              src={record.src}
+              alt={record.name}
+            />
+          </Popover>
+          <div className='text-white'>{record.desc}</div>
+        </div>
+      ),
+    },
+    {
+      title: 'Tier',
+      dataIndex: 'tier',
+      width: 100,
+      render: (tier: string) => {
+        let bgColor = ''
+        if (tier === 'S') {
+          bgColor = 'bg-[#FF7F7F]'
+        } else if (tier === 'A') {
+          bgColor = 'bg-[#FFBF7F]'
+        } else if (tier === 'B') {
+          bgColor = 'bg-[#FFDF7F]'
+        } else if (tier === 'C') {
+          bgColor = 'bg-[#FFFF7F]'
+        } else if (tier === 'D') {
+          bgColor = 'bg-[#BFFF7F]'
+        } else if (tier === '?') {
+          bgColor = 'bg-[#7FFF7F]'
+        }
+        return (
+          <div className='flex'>
+            <span className={`${bgColor} h-[25px] w-[25px] text-[15px] rounded-[2.5px] text-center`}>{tier}</span>
+          </div>
+        )
+      },
+    },
+  ]
 
   return (
     <ConfigProvider
@@ -149,7 +198,7 @@ const ItemBuilder = () => {
       <div className='mt-[100px]'>
         {/* ADS */}
         <img
-          className=' mb-[50px] w-3/5 mx-auto flex'
+          className='object-cover h-[100px] mb-[50px] w-3/5 mx-auto flex'
           src={partners}
         />
         <div className='w-3/5 mx-auto flex mb-[50px] font-semibold'>
@@ -158,6 +207,9 @@ const ItemBuilder = () => {
             <div className='w-full text-2xl'>Choose an Item</div>
             {/* SEARCH ITEM */}
             <Input
+              onChange={(e) => {
+                handleSearchValue(e.target.value)
+              }}
               className='my-[20px] h-[35px] border bg-transparent'
               placeholder='Search for an item...'
               prefix={<SearchOutlined className='mr-[10px]' />}
@@ -171,11 +223,17 @@ const ItemBuilder = () => {
               </div>
               <div className='border-[1px] border-x-transparent border-b-transparent border-solid border-t-[#1f485f] mb-[20px]'></div>
               <div className='w-full flex flex-wrap'>
-                {BaseItems.map((baseItem, index) => {
+                {searchBaseItemData.map((baseItem, index) => {
+                  let opacity = ''
+                  if (baseItem === choosedItem) {
+                    opacity = 'opacity-100'
+                  } else {
+                    opacity = 'opacity-50'
+                  }
                   return (
                     <img
                       onClick={() => handleChoosedItem(baseItem)}
-                      className='w-[38px] h-[38px] m-[4px] border border-solid border-transparent hover:border-red-500'
+                      className={`${opacity} w-[38px] h-[38px] m-[4px] border border-solid border-transparent hover:border-red-500`}
                       key={index}
                       src={baseItem.src}
                       alt={baseItem.name}
@@ -191,15 +249,39 @@ const ItemBuilder = () => {
               </div>
               <div className='border-[1px] border-x-transparent border-b-transparent border-solid border-t-[#1f485f] mb-[20px]'></div>
               <div className='w-full flex flex-wrap'>
-                {CombinedItems.map((combItem, index) => {
+                {searchCombinedItemData.map((combItem, index) => {
+                  let opacity = ''
+                  if (combItem === choosedItem) {
+                    opacity = 'opacity-100'
+                  } else {
+                    opacity = 'opacity-50'
+                  }
                   return (
-                    <img
-                      onClick={() => handleChoosedItem(combItem)}
-                      className='w-[38px] h-[38px] m-[4px] border border-solid border-transparent hover:border-red-500'
+                    <Popover
+                      placement='top'
+                      content={() => {
+                        return (
+                          <ItemPopup
+                            name={combItem.name}
+                            desc={combItem.desc}
+                            tier={combItem.tier}
+                            stat={combItem.stat || []}
+                            src={combItem.src}
+                            recipe={combItem.recipe}
+                          ></ItemPopup>
+                        )
+                      }}
+                      arrow={false}
                       key={index}
-                      src={combItem.src}
-                      alt={combItem.name}
-                    />
+                    >
+                      <img
+                        onClick={() => handleChoosedItem(combItem)}
+                        className={`${opacity} w-[38px] h-[38px] m-[4px] border border-solid border-transparent hover:border-red-500`}
+                        key={index}
+                        src={combItem.src}
+                        alt={combItem.name}
+                      />
+                    </Popover>
                   )
                 })}
               </div>
@@ -213,15 +295,15 @@ const ItemBuilder = () => {
             <div className='flex items-center mt-[20px]'>
               <img
                 className='w-[30px] h-[30px] mr-[15px]'
-                src={choosedBaseItem.src}
-                alt={choosedBaseItem.name}
+                src={choosedItem.src}
+                alt={choosedItem.name}
               />
-              <div>{choosedBaseItem.name}</div>
+              <div>{choosedItem.name}</div>
             </div>
             <Table
               className='mt-[20px]'
               columns={columns}
-              dataSource={data}
+              dataSource={CombinedItemByChoose}
               pagination={false}
             />
           </div>

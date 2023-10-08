@@ -16,11 +16,11 @@ function App() {
           element={<Home />}
         />
         <Route
-          path='/champion'
+          path='/champions'
           element={<ChampionInfo />}
         />
         <Route
-          path='/item'
+          path='/item-builder'
           element={<ItemBuilder />}
         />
       </Routes>
