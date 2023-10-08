@@ -6,6 +6,7 @@ import { BaseItems, Origins, Classes, CombinedItems, Champions, Synergies } from
 import { Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import ItemPopup from '../components/ItemPopup'
+import BaseItemPopup from '../components/BaseItemPopup'
 
 interface BaseItem {
   name: string
@@ -32,9 +33,6 @@ interface CombinedItem {
 // GÍA TRỊ BAN ĐẦU CỦA TABLE DATA
 const itemsWithBaseItem0 = CombinedItems.filter((item) => item.recipe.includes(BaseItems[0]))
 
-// TẠO MẢNG TỔNG HỢP GỒM MẢNG BASE VÀ COMB ITEM
-const totalItem = [...BaseItems, ...CombinedItems]
-
 const ItemBuilder = () => {
   const [choosedItem, setChoosedItem] = useState<BaseItem | CombinedItem>(BaseItems[0])
   const [CombinedItemByChoose, setCombinedItemByChoose] = useState(itemsWithBaseItem0)
@@ -57,9 +55,6 @@ const ItemBuilder = () => {
     setSearchCombinedItemData(foundCombItem)
   }, [searchValue])
 
-  // TÌM ITEM KHÔNG ĐƯỢC CHỌN TỪ MẢNG TỔNG ĐỂ LÀM CSS
-  const unChoosedItem = totalItem.filter((item) => item !== choosedItem)
-
   //KIỂM TRA XEM BIẾN STATE choosedItem THUỘC MẢNG NÀO ĐỂ TRẢ RA DATA CHO TABLE
   const ListCombinedItem = CombinedItems.filter((item) => {
     if ('recipe' in choosedItem) {
@@ -76,14 +71,6 @@ const ItemBuilder = () => {
 
   const handleSearchValue = (searchTerm: string) => {
     setSearchValue(searchTerm)
-    // BaseItems.map((item,index)=>{
-    //   const foundBaseItem = item.filter((name)=>name.toLocaleLowerCase().includes)
-    // })
-    // const foundBaseItem = BaseItems.filter((item) =>
-    //   item.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
-    // )
-    // setSearchBaseItemData(foundBaseItem)
-    // console.log(foundBaseItem)
   }
 
   // SETUP TABLE
@@ -95,12 +82,28 @@ const ItemBuilder = () => {
       render: (recipe: BaseItem[]) => (
         <div className='flex items-center'>
           {recipe.map((item, index) => (
-            <img
-              onClick={() => handleChoosedItem(item)}
-              className='cursor-pointer h-[33px], w-[33px] mr-[10px] border border-solid border-[#17313a]'
+            <Popover
+              placement='top'
+              content={() => {
+                return (
+                  <BaseItemPopup
+                    name={item.name}
+                    desc={item.desc}
+                    stat={item.stat}
+                    src={item.src}
+                  ></BaseItemPopup>
+                )
+              }}
+              arrow={false}
               key={index}
-              src={item.src}
-            />
+            >
+              <img
+                onClick={() => handleChoosedItem(item)}
+                className='cursor-pointer h-[33px], w-[33px] mr-[10px] border border-solid border-[#17313a]'
+                key={index}
+                src={item.src}
+              />
+            </Popover>
           ))}
         </div>
       ),
@@ -207,14 +210,14 @@ const ItemBuilder = () => {
             <div className='w-full text-2xl'>Choose an Item</div>
             {/* SEARCH ITEM */}
             <Input
+              value={searchValue}
               onChange={(e) => {
                 handleSearchValue(e.target.value)
               }}
               className='my-[20px] h-[35px] border bg-transparent'
               placeholder='Search for an item...'
               prefix={<SearchOutlined className='mr-[10px]' />}
-              suffix={<CloseOutlined />}
-              allowClear={true}
+              suffix={<CloseOutlined onClick={() => setSearchValue('')} />}
             />
             {/* BASEITEM LIST */}
             <div className='w-full flex flex-col'>
@@ -231,13 +234,29 @@ const ItemBuilder = () => {
                     opacity = 'opacity-50'
                   }
                   return (
-                    <img
-                      onClick={() => handleChoosedItem(baseItem)}
-                      className={`${opacity} w-[38px] h-[38px] m-[4px] border border-solid border-transparent hover:border-red-500`}
+                    <Popover
+                      placement='top'
+                      content={() => {
+                        return (
+                          <BaseItemPopup
+                            name={baseItem.name}
+                            desc={baseItem.desc}
+                            stat={baseItem.stat}
+                            src={baseItem.src}
+                          ></BaseItemPopup>
+                        )
+                      }}
+                      arrow={false}
                       key={index}
-                      src={baseItem.src}
-                      alt={baseItem.name}
-                    />
+                    >
+                      <img
+                        onClick={() => handleChoosedItem(baseItem)}
+                        className={`${opacity} w-[38px] h-[38px] m-[4px] border border-solid border-transparent hover:border-red-500`}
+                        key={index}
+                        src={baseItem.src}
+                        alt={baseItem.name}
+                      />
+                    </Popover>
                   )
                 })}
               </div>
