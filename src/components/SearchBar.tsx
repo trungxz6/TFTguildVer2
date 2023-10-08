@@ -38,13 +38,13 @@ const SearchBar: React.FC = () => {
             hoverBorderColor: '#777',
             colorBorder: 'var(--border-clr)',
           },
-          Button: {
-            colorBgContainer: 'var(--bg-highlight-clr)',
-            colorBorder: 'var(--border-clr)',
-            colorText: '#666',
-            colorTextBase: 'var(--text-clr)',
-            colorTextPlaceholder: '#666',
-          },
+          // Button: {
+          //   colorBgContainer: 'var(--bg-highlight-clr)',
+          //   colorBorder: 'var(--border-clr)',
+          //   colorText: '#666',
+          //   colorTextBase: 'var(--text-clr)',
+          //   colorTextPlaceholder: '#666',
+          // },
         },
       }}
     >
