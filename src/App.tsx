@@ -1,10 +1,10 @@
 import './App.css'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
-import ChampionInfo from './pages/ChampionInfo'
 import Home from './pages/Home'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import ItemBuilder from './pages/ItemBuilder'
+import ChampionInfo from './pages/ChampionInfo'
+import TeamComps from './pages/TeamComps'
 
 function App() {
   return (
@@ -16,12 +16,12 @@ function App() {
           element={<Home />}
         />
         <Route
-          path='/champions'
-          element={<ChampionInfo />}
+          path='/team-comps'
+          element={<TeamComps />}
         />
         <Route
-          path='/item-builder'
-          element={<ItemBuilder />}
+          path='/champion'
+          element={<ChampionInfo />}
         />
       </Routes>
       <Footer />
