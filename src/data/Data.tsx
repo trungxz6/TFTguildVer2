@@ -1,12 +1,29 @@
-import Damage from '../assets/icon/iconAd.svg'
+import AD from '../assets/icon/iconAd.svg'
 import MR from '../assets/icon/iconMr.svg'
+import AP from '../assets/icon/iconAP.svg'
+import AR from '../assets/icon/iconAr.svg'
+import AS from '../assets/icon/iconAs.svg'
+import CR from '../assets/icon/iconCr.svg'
+import HP from '../assets/icon/iconHp.svg'
+import Mana from '../assets/icon/iconMana.svg'
 
 interface BaseItem {
   name: string
   desc: string
   src: string
-  icon?: string
-  into: BaseItem[]
+  stat?: {
+    icon: JSX.Element
+    stat: string
+  }[]
+}
+
+interface CombinedItem {
+  name: string
+  desc: string
+  tier: string
+  stat?: string[]
+  src: string
+  recipe: BaseItem[]
 }
 
 interface Origin {
@@ -28,15 +45,6 @@ interface Class {
     point: number
     desc: string
   }[]
-}
-
-interface CombinedItem {
-  name: string
-  desc: string
-  tier: string
-  stat: string[]
-  src: string
-  recipe: BaseItem[]
 }
 
 interface Champions {
@@ -78,62 +86,101 @@ export const BaseItems = [
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/BFSword.png',
     icon: 'https://rerollcdn.com/ui/icon-ad.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={AD} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Chain Vest',
     desc: '20 Armor.',
     src: 'https://rerollcdn.com/items/ChainVest.png',
     icon: 'https://rerollcdn.com/ui/icon-ar.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={AR} />,
+        stat: '+20',
+      },
+    ],
   },
   {
     name: `Giant's Belt`,
     desc: '150 Health.',
     src: 'https://rerollcdn.com/items/GiantsBelt.png',
     icon: 'https://rerollcdn.com/ui/icon-hp.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={HP} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Needlessly Large Rod',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/NeedlesslyLargeRod.png',
     icon: 'https://rerollcdn.com/ui/icon-ap.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={AP} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Negatron Cloak',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/NegatronCloak.png',
     icon: 'https://rerollcdn.com/ui/icon-mr.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={MR} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Recurve Bow',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/RecurveBow.png',
     icon: 'https://rerollcdn.com/ui/icon-as.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={AS} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Sparring Gloves',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/SparringGloves.png',
     icon: 'https://rerollcdn.com/ui/icon-cr.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={CR} />,
+        stat: '+10',
+      },
+    ],
   },
   {
     name: 'Spatula',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/Spatula.png',
-    into: [],
   },
   {
     name: 'Tear of the Goddess',
     desc: '10 Attack damage.',
     src: 'https://rerollcdn.com/items/TearoftheGoddess.png',
     icon: 'https://rerollcdn.com/ui/icon-mana.svg',
-    into: [],
+    stat: [
+      {
+        icon: <img src={Mana} />,
+        stat: '+10',
+      },
+    ],
   },
 ]
 
@@ -208,7 +255,7 @@ export const CombinedItems = [
     tier: 'S',
     stat: [
       {
-        icon: <img src={Damage} />,
+        icon: <img src={AD} />,
         stat: '+20%',
       },
       {
@@ -225,12 +272,12 @@ export const CombinedItems = [
     tier: 'A',
     stat: [
       {
-        icon: <img src={Damage} />,
-        stat: '+30%',
+        icon: <img src={AD} />,
+        stat: '+15%',
       },
       {
-        icon: <img src={MR} />,
-        stat: '30%',
+        icon: <img src={HP} />,
+        stat: '+100',
       },
     ],
     src: 'https://rerollcdn.com/items/SteraksGage.png',
@@ -242,12 +289,12 @@ export const CombinedItems = [
     tier: 'A',
     stat: [
       {
-        icon: <img src={Damage} />,
-        stat: '+40%',
+        icon: <img src={AS} />,
+        stat: '+10%',
       },
       {
-        icon: <img src={MR} />,
-        stat: '40%',
+        icon: <img src={AR} />,
+        stat: '+20',
       },
     ],
     src: 'https://rerollcdn.com/items/TitansResolve.png',
@@ -281,11 +328,7 @@ export const Champions = [
       img: 'https://rerollcdn.com/abilities/9.5/aatrox-world-ender.png',
       name: 'World Ender',
       type: 'Active',
-      detail: `Transform for 12 seconds, gaining 10% Omnivamp. While transformed, attacks deal 80% Speedbonus + % ${(
-        <span>
-          <img src={Damage} />
-        </span>
-      )} Physical damage.`,
+      detail: `Transform for 12 seconds, gaining 10% Omnivamp. While transformed, attacks deal 80% Speedbonus + % Physical damage.`,
       other: [
         {
           name: 'Damage',

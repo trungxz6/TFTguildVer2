@@ -31,14 +31,3 @@
 .ant-popover .ant-popover-inner {
   padding: 0px;
 }
-
-.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
-  border-color: transparent;
-  box-shadow: none;
-}
-.ant-input-affix-wrapper-focused {
-  border-color: var(--primary-clr);
-}
-/* .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):active {
-  border-color: red;
-} */

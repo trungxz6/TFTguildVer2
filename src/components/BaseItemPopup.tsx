@@ -5,35 +5,33 @@ interface BaseItem {
   name: string
   desc: string
   src: string
-  icon?: string
-}
-
-interface CombinedItem {
-  name: string
-  desc: string
-  tier: string
-  stat: {
+  stat?: {
     icon: JSX.Element
     stat: string
   }[]
-  src: string
-  recipe: BaseItem[]
 }
 
-const ItemPopup: React.FC<CombinedItem> = (CombinedItem) => {
+const BaseItemPopup: React.FC<BaseItem> = (BaseItem) => {
+  const { name, desc, src, stat } = BaseItem
+
+  const IntoCombinedItem = CombinedItems.filter((item) => {
+    const isItemIncluded = item.recipe.some((recipeItem) => recipeItem.name === name)
+    return isItemIncluded
+  })
+
   return (
     <div className='bg-[#0D202B] border border-solid border-[#1f485f] text-[#fef6f3] font-semibold max-w-[500px]'>
       {/* IMAGE AND STAT */}
       <div className='flex items-center p-[10px]'>
         <img
           className='w-[40px]'
-          src={CombinedItem.src}
-          alt={CombinedItem.name}
+          src={BaseItem.src}
+          alt={BaseItem.name}
         />
         <div className='ml-[10px]'>
-          <div className=''>{CombinedItem.name}</div>
+          <div className=''>{BaseItem.name}</div>
           <div className='flex'>
-            {CombinedItem.stat.map((stats, idx) => {
+            {BaseItem.stat?.map((stats, idx) => {
               return (
                 <div
                   key={idx}
@@ -50,13 +48,13 @@ const ItemPopup: React.FC<CombinedItem> = (CombinedItem) => {
       {/* DIVIDER */}
       <div className=' border-solid border border-t-[#1f485f] border-x-transparent border-b-transparent'></div>
       {/* DESCRIPTION */}
-      <div className='font-medium p-[10px]'>{CombinedItem.desc}</div>
+      <div className='font-medium p-[10px]'>{BaseItem.desc}</div>
       {/* DIVIDER */}
       <div className=' border-solid border border-t-[#1f485f] border-x-transparent border-b-transparent'></div>
       {/* RECIPE */}
       <div className='flex items-center p-[10px]'>
         <div className='text-[#88A0A7]'>Recipe:</div>
-        {CombinedItem.recipe.map((baseItem, idx) => {
+        {IntoCombinedItem.map((baseItem, idx) => {
           return (
             <img
               key={idx}
@@ -70,4 +68,4 @@ const ItemPopup: React.FC<CombinedItem> = (CombinedItem) => {
   )
 }
 
-export default ItemPopup
+export default BaseItemPopup
