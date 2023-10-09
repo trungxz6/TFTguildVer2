@@ -29,22 +29,43 @@ const ChampList = () => {
             colorBgElevated: 'var(--bg-clr)',
             boxShadowSecondary: 'none',
           },
-          Button: {},
+          Button: {
+            // colorBgBase: 'var(--primary-clr)',
+            // colorBgContainer: 'var(--primary-clr)',
+            // colorBgContainerDisabled: 'var(--primary-clr)',
+            // colorBgElevated: 'var(--primary-clr)',
+            // colorBgLayout: 'var(--primary-clr)',
+            // colorBgMask: 'var(--primary-clr)',
+            // colorBgSpotlight: 'var(--primary-clr)',
+            // colorBgTextActive: 'var(--primary-clr)',
+            // colorBgTextHover: 'var(--primary-clr)',
+            // ghostBg: 'var(--primary-clr)',
+            // defaultBg: 'var(--primary-clr)',
+            colorPrimaryBg: '#0BC4E2',
+            // colorBorder: 'transparent',
+            // colorText: 'white',
+            // colorBgTextHover: 'transparent',
+            // textHoverBg: 'transparent',
+            // defaultBorderColor: 'transparent',
+            // colorBorderBg: 'transparent',
+            primaryColor: '#0BC4E2',
+            colorPrimary: '#D47559',
+          },
         },
       }}
     >
       <div className='flex flex-wrap'>
-        <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] text-right'>
-          <span className='flex justify-between items-center'>
-            3
-            <CloseOutlined style={{ marginLeft: '5px' }} />
-          </span>
-        </Button>
         <Button
-          icon={<CloseOutlined className='text-right' />}
-          className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] text-left'
+          color='#0BC4E2'
+          type='primary'
+          className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] flex justify-between items-center'
         >
-          3
+          <span>3</span>
+          <CloseOutlined />
+        </Button>
+        <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] flex justify-between items-center'>
+          <span>3</span>
+          <CloseOutlined />
         </Button>
         <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>1</Button>
         <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>2</Button>
