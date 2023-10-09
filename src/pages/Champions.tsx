@@ -106,6 +106,10 @@ const renderOption = (option: { value: string; label: string }) => {
 const Champions: React.FC = () => {
   const [choosedFilter, setChoosedFilter] = useState<string[]>([])
 
+  const handleFilterChange = (newFilter: string) => {
+    setChoosedFilter(choosedFilter.filter((item) => item !== newFilter))
+  }
+
   console.log('click ', choosedFilter)
   const onClick: MenuProps['onClick'] = (e) => {
     if (choosedFilter.includes(e.key)) {
@@ -184,7 +188,10 @@ const Champions: React.FC = () => {
               suffix={<RiSearchLine className='text-[#666]' />}
             />
           </div>
-          <ChampList />
+          <ChampList
+            Filter={choosedFilter}
+            onFilterChange={handleFilterChange}
+          ></ChampList>
         </div>
       </div>
     </ConfigProvider>

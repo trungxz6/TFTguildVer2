@@ -22,13 +22,18 @@ function App() {
           element={<TeamComps />}
         />
         <Route
-          path='/champions'
+          path='/champions/'
           element={<Champions />}
-        ></Route>
-        <Route
-          path='/aatrox'
-          element={<ChampionInfo />}
-        />
+        >
+          {/* <Route
+            path='/'
+            element={<Champions />}
+          ></Route> */}
+          {/* <Route
+            path='aatrox'
+            element={<ChampionInfo />}
+          ></Route> */}
+        </Route>
         <Route
           path='/item-builder'
           element={<ItemBuilder />}

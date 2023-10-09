@@ -1,8 +1,80 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Champions } from '../data/Data'
 import { Popover, ConfigProvider, Button } from 'antd'
 import PopupHover from './Popup'
 import { CloseOutlined } from '@ant-design/icons'
+
+interface BaseItem {
+  name: string
+  desc: string
+  src: string
+  icon?: string
+}
+
+interface CombinedItem {
+  name: string
+  desc: string
+  tier: string
+  stat: {
+    icon: JSX.Element
+    stat: string
+  }[]
+  src: string
+  recipe: BaseItem[]
+}
+
+interface Origin {
+  name: string
+  type: string
+  src: string
+  desc: string
+  level: {
+    point: number
+    desc: string
+  }[]
+}
+
+interface Class {
+  name: string
+  src: string
+  desc: string
+  level: {
+    point: number
+    desc: string
+  }[]
+}
+
+interface ChampList {
+  origin: Origin[]
+  class: Class[]
+  src: string
+  alt: string
+  tier: string
+  itemBuild: CombinedItem[]
+  stats: {
+    Cost: string
+    Health: string
+    Mana: string
+    Armor: string
+    MR: string
+    AbilityPower: string
+    DPS: string
+    Damage: string
+    AtkSpd: string
+    CritRate: string
+    Range: string
+  }
+  abilities: {
+    img: string
+    name: string
+    type: string
+    detail: string
+    other: {
+      name: string
+      param: string
+    }[]
+  }
+}
 
 const checkCost = (cost: string) => {
   let borderColor = ''
@@ -19,7 +91,34 @@ const checkCost = (cost: string) => {
   }
 }
 
-const ChampList = () => {
+interface choosedFilter {
+  Filter: string[]
+  onFilterChange: (newFilter: string) => void
+}
+
+const ChampList: React.FC<choosedFilter> = ({ Filter, onFilterChange }) => {
+  const [ChampFilterList, setChampFilterList] = useState<ChampList[]>([])
+
+  useEffect(() => {
+    Champions.filter((champ) => {
+      Filter.map((item: string) => {
+        if (champ.stats.Cost === item) {
+          if ((ChampFilterList.length = 0)) {
+            setChampFilterList((prev) => [...prev, champ])
+          } else {
+            setChampFilterList((prev) => {
+              if (prev.includes(champ)) {
+                return []
+              } else {
+                return [...prev, champ]
+              }
+            })
+          }
+        }
+      })
+    })
+  }, [Filter])
+
   return (
     <ConfigProvider
       theme={{
@@ -30,105 +129,151 @@ const ChampList = () => {
             boxShadowSecondary: 'none',
           },
           Button: {
-            // colorBgBase: 'var(--primary-clr)',
-            // colorBgContainer: 'var(--primary-clr)',
-            // colorBgContainerDisabled: 'var(--primary-clr)',
-            // colorBgElevated: 'var(--primary-clr)',
-            // colorBgLayout: 'var(--primary-clr)',
-            // colorBgMask: 'var(--primary-clr)',
-            // colorBgSpotlight: 'var(--primary-clr)',
-            // colorBgTextActive: 'var(--primary-clr)',
-            // colorBgTextHover: 'var(--primary-clr)',
-            // ghostBg: 'var(--primary-clr)',
-            // defaultBg: 'var(--primary-clr)',
             colorPrimaryBg: '#0BC4E2',
-            // colorBorder: 'transparent',
-            // colorText: 'white',
-            // colorBgTextHover: 'transparent',
-            // textHoverBg: 'transparent',
-            // defaultBorderColor: 'transparent',
-            // colorBorderBg: 'transparent',
-            primaryColor: '#0BC4E2',
-            colorPrimary: '#D47559',
+            primaryColor: '#fef6f3',
+            colorPrimary: 'var(--primary-clr)',
           },
         },
       }}
     >
       <div className='flex flex-wrap'>
-        <Button
-          color='#0BC4E2'
-          type='primary'
-          className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] flex justify-between items-center'
-        >
-          <span>3</span>
-          <CloseOutlined />
-        </Button>
-        <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] flex justify-between items-center'>
+        {Filter.map((item, idx) => {
+          return (
+            <Button
+              onClick={() => onFilterChange(item)}
+              key={idx}
+              color='#0BC4E2'
+              type='primary'
+              className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] flex justify-between items-center'
+            >
+              <span>{item}</span>
+              <CloseOutlined />
+            </Button>
+          )
+        })}
+        {/* <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] flex justify-between items-center'>
           <span>3</span>
           <CloseOutlined />
         </Button>
         <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>1</Button>
         <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>2</Button>
         <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>Bilgewater</Button>
-        <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>Challenger</Button>
+        <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>Challenger</Button> */}
       </div>
       <div className='flex flex-wrap'>
-        {Champions.map((champCard, index) => {
-          const borderColor = checkCost(champCard.stats.Cost)
-          return (
-            <div
-              key={index}
-              className='flex flex-col justify-start items-center py-[10px] px-[15px] h-[100px]'
-            >
-              <div className='w-[80px] m-auto text-center'>
-                <Popover
-                  placement='top'
-                  content={() => {
-                    return (
-                      <PopupHover
-                        origin={champCard.origin}
-                        class={champCard.class}
+        {Filter.length > 0
+          ? ChampFilterList.map((champCard, index) => {
+              const borderColor = checkCost(champCard.stats.Cost)
+              return (
+                <div
+                  key={index}
+                  className='flex flex-col justify-start items-center py-[10px] px-[15px] h-[100px]'
+                >
+                  <div className='w-[80px] m-auto text-center'>
+                    <Popover
+                      placement='top'
+                      content={() => {
+                        return (
+                          <PopupHover
+                            origin={champCard.origin}
+                            class={champCard.class}
+                            src={champCard.src}
+                            alt={champCard.alt}
+                            tier={champCard.tier}
+                            itemBuild={champCard.itemBuild}
+                            stats={{
+                              Cost: `${champCard.stats.Cost}`,
+                              Health: `${champCard.stats.Health}`,
+                              Mana: `${champCard.stats.Mana}`,
+                              Armor: `${champCard.stats.Armor}`,
+                              MR: `${champCard.stats.MR}`,
+                              AbilityPower: `${champCard.stats.AbilityPower}`,
+                              DPS: `${champCard.stats.DPS}`,
+                              Damage: `${champCard.stats.Damage}`,
+                              AtkSpd: `${champCard.stats.AtkSpd}`,
+                              CritRate: `${champCard.stats.CritRate}`,
+                              Range: `${champCard.stats.Range}`,
+                            }}
+                            abilities={{
+                              img: `${champCard.abilities.img}`,
+                              name: `${champCard.abilities.name}`,
+                              type: `${champCard.abilities.type}`,
+                              detail: `${champCard.abilities.detail}`,
+                              other: champCard.abilities.other,
+                            }}
+                          ></PopupHover>
+                        )
+                      }}
+                      arrow={false}
+                      key={index}
+                    >
+                      <img
+                        className={` h-[53px] w-[53px] border border-solid ${borderColor} hover:border-orange-400`}
                         src={champCard.src}
                         alt={champCard.alt}
-                        tier={champCard.tier}
-                        itemBuild={champCard.itemBuild}
-                        stats={{
-                          Cost: `${champCard.stats.Cost}`,
-                          Health: `${champCard.stats.Health}`,
-                          Mana: `${champCard.stats.Mana}`,
-                          Armor: `${champCard.stats.Armor}`,
-                          MR: `${champCard.stats.MR}`,
-                          AbilityPower: `${champCard.stats.AbilityPower}`,
-                          DPS: `${champCard.stats.DPS}`,
-                          Damage: `${champCard.stats.Damage}`,
-                          AtkSpd: `${champCard.stats.AtkSpd}`,
-                          CritRate: `${champCard.stats.CritRate}`,
-                          Range: `${champCard.stats.Range}`,
-                        }}
-                        abilities={{
-                          img: `${champCard.abilities.img}`,
-                          name: `${champCard.abilities.name}`,
-                          type: `${champCard.abilities.type}`,
-                          detail: `${champCard.abilities.detail}`,
-                          other: champCard.abilities.other,
-                        }}
-                      ></PopupHover>
-                    )
-                  }}
-                  arrow={false}
+                      />
+                    </Popover>
+                  </div>
+                  <div className='w-[80px] justify-self-center self-center m-auto text-center'>{champCard.alt}</div>
+                </div>
+              )
+            })
+          : Champions.map((champCard, index) => {
+              const borderColor = checkCost(champCard.stats.Cost)
+              return (
+                <div
                   key={index}
+                  className='flex flex-col justify-start items-center py-[10px] px-[15px] h-[100px]'
                 >
-                  <img
-                    className={` h-[53px] w-[53px] border border-solid ${borderColor} hover:border-orange-400`}
-                    src={champCard.src}
-                    alt={champCard.alt}
-                  />
-                </Popover>
-              </div>
-              <div className='w-[80px] justify-self-center self-center m-auto text-center'>{champCard.alt}</div>
-            </div>
-          )
-        })}
+                  <div className='w-[80px] m-auto text-center'>
+                    <Popover
+                      placement='top'
+                      content={() => {
+                        return (
+                          <PopupHover
+                            origin={champCard.origin}
+                            class={champCard.class}
+                            src={champCard.src}
+                            alt={champCard.alt}
+                            tier={champCard.tier}
+                            itemBuild={champCard.itemBuild}
+                            stats={{
+                              Cost: `${champCard.stats.Cost}`,
+                              Health: `${champCard.stats.Health}`,
+                              Mana: `${champCard.stats.Mana}`,
+                              Armor: `${champCard.stats.Armor}`,
+                              MR: `${champCard.stats.MR}`,
+                              AbilityPower: `${champCard.stats.AbilityPower}`,
+                              DPS: `${champCard.stats.DPS}`,
+                              Damage: `${champCard.stats.Damage}`,
+                              AtkSpd: `${champCard.stats.AtkSpd}`,
+                              CritRate: `${champCard.stats.CritRate}`,
+                              Range: `${champCard.stats.Range}`,
+                            }}
+                            abilities={{
+                              img: `${champCard.abilities.img}`,
+                              name: `${champCard.abilities.name}`,
+                              type: `${champCard.abilities.type}`,
+                              detail: `${champCard.abilities.detail}`,
+                              other: champCard.abilities.other,
+                            }}
+                          ></PopupHover>
+                        )
+                      }}
+                      arrow={false}
+                      key={index}
+                    >
+                      <img
+                        className={` h-[53px] w-[53px] border border-solid ${borderColor} hover:border-orange-400`}
+                        src={champCard.src}
+                        alt={champCard.alt}
+                      />
+                    </Popover>
+                  </div>
+                  <div className='w-[80px] justify-self-center self-center m-auto text-center'>{champCard.alt}</div>
+                </div>
+              )
+            })}
       </div>
     </ConfigProvider>
   )
