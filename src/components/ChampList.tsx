@@ -34,15 +34,15 @@ const ChampList = () => {
       }}
     >
       <div className='flex flex-wrap'>
-        <Button
-          icon={<CloseOutlined />}
-          className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'
-        >
-          3
+        <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] text-right'>
+          <span className='flex justify-between items-center'>
+            3
+            <CloseOutlined style={{ marginLeft: '5px' }} />
+          </span>
         </Button>
         <Button
-          icon={<CloseOutlined />}
-          className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'
+          icon={<CloseOutlined className='text-right' />}
+          className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] text-left'
         >
           3
         </Button>
