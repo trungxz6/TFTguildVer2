@@ -5,8 +5,9 @@ import { CloseOutlined, SearchOutlined } from '@ant-design/icons'
 import { BaseItems, Origins, Classes, CombinedItems, Champions, Synergies } from '../data/Data'
 import { Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import ItemPopup from '../components/ItemPopup'
+// import ItemPopup from '../components/ItemPopup'
 import BaseItemPopup from '../components/BaseItemPopup'
+import PopupHover from '../components/Popup'
 
 interface BaseItem {
   name: string
@@ -117,14 +118,14 @@ const ItemBuilder = () => {
             placement='top'
             content={() => {
               return (
-                <ItemPopup
+                <PopupHover
                   name={record.name}
                   desc={record.desc}
                   tier={record.tier}
                   stat={record.stat || []}
                   src={record.src}
                   recipe={record.recipe}
-                ></ItemPopup>
+                ></PopupHover>
               )
             }}
             arrow={false}
@@ -280,14 +281,14 @@ const ItemBuilder = () => {
                       placement='top'
                       content={() => {
                         return (
-                          <ItemPopup
+                          <PopupHover
                             name={combItem.name}
                             desc={combItem.desc}
                             tier={combItem.tier}
                             stat={combItem.stat || []}
                             src={combItem.src}
                             recipe={combItem.recipe}
-                          ></ItemPopup>
+                          ></PopupHover>
                         )
                       }}
                       arrow={false}

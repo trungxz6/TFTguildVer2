@@ -40,56 +40,56 @@ const TeamCompsCard: React.FC = () => {
                   </div>
                 </div>
                 <div>
-                  <Link to={'/champion'}>
+                  <Link to={'/champions'}>
                     <img
                       className='w-[48px] mr-4 border-[1px] border-solid border-[var(--border-5c-clr)]'
                       src='https://rerollcdn.com/characters/Base/Ashe.png'
                       alt=''
                     />
                   </Link>
-                  <Link to={'/champion'}>
+                  <Link to={'/champions'}>
                     <img
                       className='w-[48px] mr-4 border-[1px] border-solid border-[var(--border-5c-clr)]'
                       src='https://rerollcdn.com/characters/Base/Nautilus.png'
                       alt=''
                     />
                   </Link>
-                  <Link to={'/champion'}>
+                  <Link to={'/champions'}>
                     <img
                       className='w-[48px] mr-4 border-[1px] border-solid border-[var(--border-5c-clr)]'
                       src='https://rerollcdn.com/characters/Base/JarvanIV.png'
                       alt=''
                     />
                   </Link>
-                  <Link to={'/champion'}>
+                  <Link to={'/champions'}>
                     <img
                       className='w-[48px] mr-4 border-[1px] border-solid border-[var(--border-5c-clr)]'
                       src='https://rerollcdn.com/characters/Base/Nilah.png'
                       alt=''
                     />
                   </Link>
-                  <Link to={'/champion'}>
+                  <Link to={'/champions'}>
                     <img
                       className='w-[48px] mr-4 border-[1px] border-solid border-[var(--border-5c-clr)]'
                       src='https://rerollcdn.com/characters/Base/Sejuani.png'
                       alt=''
                     />
                   </Link>
-                  <Link to={'/champion'}>
+                  <Link to={'/champions'}>
                     <img
                       className='w-[48px] mr-4 border-[1px] border-solid border-[var(--border-5c-clr)]'
                       src='https://rerollcdn.com/characters/Base/Aatrox.png'
                       alt=''
                     />
                   </Link>
-                  <Link to={'/champion'}>
+                  <Link to={'/champions'}>
                     <img
                       className='w-[48px] mr-4 border-[1px] border-solid border-[var(--border-5c-clr)]'
                       src='https://rerollcdn.com/characters/Base/Gangplank.png'
                       alt=''
                     />
                   </Link>
-                  <Link to={'/champion'}>
+                  <Link to={'/champions'}>
                     <img
                       className='w-[48px] mr-4 border-[1px] border-solid border-[var(--border-5c-clr)]'
                       src='https://rerollcdn.com/characters/Base/Sion.png'
@@ -320,7 +320,7 @@ const TeamCompsCard: React.FC = () => {
                           LV UP
                         </span>
                         <Link
-                          to={'/champion'}
+                          to={'/champions'}
                           className='flex items-center mb-4'
                         >
                           <img
@@ -330,7 +330,7 @@ const TeamCompsCard: React.FC = () => {
                           />
                         </Link>
                         <Link
-                          to={'/champion'}
+                          to={'/champions'}
                           className='flex items-center'
                         >
                           <img
@@ -345,7 +345,7 @@ const TeamCompsCard: React.FC = () => {
                         <div className='flex items-center mb-4'>
                           <MdArrowForwardIos className='text-[#88A0A7] mr-4' />
                           <Link
-                            to={'/champion'}
+                            to={'/champions'}
                             className='flex items-center'
                           >
                             <img
@@ -355,7 +355,7 @@ const TeamCompsCard: React.FC = () => {
                             />
                           </Link>
                           <Link
-                            to={'/champion'}
+                            to={'/champions'}
                             className='flex items-center'
                           >
                             <img
@@ -368,7 +368,7 @@ const TeamCompsCard: React.FC = () => {
                         <div className='flex items-center mb-4'>
                           <MdArrowForwardIos className='text-[#88A0A7] mr-4' />
                           <Link
-                            to={'/champion'}
+                            to={'/champions'}
                             className='flex items-center'
                           >
                             <img
@@ -381,7 +381,7 @@ const TeamCompsCard: React.FC = () => {
                         <div className='flex items-center '>
                           <MdArrowForwardIos className='text-[#88A0A7] mr-4' />
                           <Link
-                            to={'/champion'}
+                            to={'/champions'}
                             className='flex items-center'
                           >
                             <img
