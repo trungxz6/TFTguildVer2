@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import ChampionInfo from './pages/ChampionInfo'
 import TeamComps from './pages/TeamComps'
+import MetaReport from './pages/MetaReport'
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
         <Route
           path='/team-comps'
           element={<TeamComps />}
+        />
+        <Route
+          path='/meta-report'
+          element={<MetaReport />}
         />
         <Route
           path='/champion'

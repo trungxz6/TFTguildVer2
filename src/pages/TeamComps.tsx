@@ -20,7 +20,7 @@ const TeamComps: React.FC = () => {
   }
 
   const suffix = <RiSearchLine className='text-[#666]' />
-  
+
   return (
     <ConfigProvider
       theme={{
@@ -76,7 +76,7 @@ const TeamComps: React.FC = () => {
               suffix={suffix}
             />
           </div>
-          <SortBy />
+          <SortBy type='teamComps' />
           <>
             <TeamCompsCard />
             <TeamCompsCard />
