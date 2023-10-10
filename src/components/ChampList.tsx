@@ -96,19 +96,48 @@ interface choosedFilter {
   onFilterChange: (newFilter: string) => void
 }
 
+const CostArr = ['1', '2', '3', '4', '5']
+const OriginArr = ['bilgewater', 'darkin', 'demacia', 'freljord', 'empress']
+const ClassArr = ['bastion', 'bruiser', 'challenger', 'gunner', 'invoker']
+
 const ChampList: React.FC<choosedFilter> = ({ Filter, onFilterChange }) => {
   const [ChampFilterList, setChampFilterList] = useState<ChampList[]>([])
 
+  // useEffect(() => {
+  //   Filter.map((item) => {
+  //     if (item === '1' || item === '2' || item === '3' || item === '4' || item === '5') {
+  //       if (ChampFilterList.length === 0) {
+  //         setChampFilterList(Champions.filter((champ) => champ.stats.Cost === item))
+  //       } else {
+  //         Champions.filter((champ) => {
+  //           champ.stats.Cost === item
+  //           setChampFilterList((prev) => {
+  //             if (prev.includes(champ)) {
+  //               return []
+  //             } else {
+  //               return [...prev, champ]
+  //             }
+  //           })
+  //         })
+  //       }
+  //     }
+  //   })
+  // }, [Filter])
+
   useEffect(() => {
+    const FilterCostArr = Filter.filter((item) => CostArr.includes(item))
+    // console.log(FilterCostArr)
     Champions.filter((champ) => {
-      Filter.map((item: string) => {
-        if (champ.stats.Cost === item) {
+      FilterCostArr.map((price: string) => {
+        if (champ.stats.Cost === price) {
           if ((ChampFilterList.length = 0)) {
             setChampFilterList((prev) => [...prev, champ])
           } else {
             setChampFilterList((prev) => {
               if (prev.includes(champ)) {
                 return []
+              } else if (prev.some((item) => item === champ)) {
+                return [...prev.filter((item) => item !== champ)]
               } else {
                 return [...prev, champ]
               }
@@ -118,6 +147,46 @@ const ChampList: React.FC<choosedFilter> = ({ Filter, onFilterChange }) => {
       })
     })
   }, [Filter])
+
+  useEffect(() => {
+    const FilterOriginArr = Filter.filter((item) => OriginArr.includes(item))
+    // console.log(FilterCostArr)
+    Champions.filter((champ) => {
+      FilterOriginArr.map((price: string) => {
+        if ((champ.origin[0].name = price)) {
+          if ((ChampFilterList.length = 0)) {
+            setChampFilterList((prev) => [...prev, champ])
+          } else {
+            setChampFilterList((prev) => {
+              if (prev.includes(champ)) {
+                return []
+              } else if (prev.some((item) => item === champ)) {
+                return [...prev.filter((item) => item !== champ)]
+              } else {
+                return [...prev, champ]
+              }
+            })
+          }
+        }
+      })
+    })
+  }, [Filter])
+
+  // FilterCostArr.map((price: string) => {
+  //   if (champ.stats.Cost === price) {
+  //     if ((ChampFilterList.length = 0)) {
+  //       setChampFilterList((prev) => [...prev, champ])
+  //     } else {
+  //       setChampFilterList((prev) => {
+  //         if (prev.includes(champ)) {
+  //           return []
+  //         } else {
+  //           return [...prev, champ]
+  //         }
+  //       })
+  //     }
+  //   }
+  // })
 
   return (
     <ConfigProvider
@@ -151,14 +220,6 @@ const ChampList: React.FC<choosedFilter> = ({ Filter, onFilterChange }) => {
             </Button>
           )
         })}
-        {/* <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px] flex justify-between items-center'>
-          <span>3</span>
-          <CloseOutlined />
-        </Button>
-        <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>1</Button>
-        <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>2</Button>
-        <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>Bilgewater</Button>
-        <Button className='w-[24%] mb-[10px] rounded-[3px] h-[35px] mx-[4.5px]'>Challenger</Button> */}
       </div>
       <div className='flex flex-wrap'>
         {Filter.length > 0

@@ -110,7 +110,7 @@ const Champions: React.FC = () => {
     setChoosedFilter(choosedFilter.filter((item) => item !== newFilter))
   }
 
-  console.log('click ', choosedFilter)
+  // console.log('click ', choosedFilter)
   const onClick: MenuProps['onClick'] = (e) => {
     if (choosedFilter.includes(e.key)) {
       setChoosedFilter((prevfilter) => prevfilter.filter((item) => item !== e.key))
