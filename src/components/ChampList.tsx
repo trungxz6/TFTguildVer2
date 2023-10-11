@@ -3,6 +3,8 @@ import { Champions } from '../data/Data'
 import { Popover, ConfigProvider, Button } from 'antd'
 import PopupHover from './Popup'
 import { CloseOutlined } from '@ant-design/icons'
+import type { MenuProps } from 'antd'
+import { MenuInfo } from 'rc-menu/lib/interface'
 
 interface BaseItem {
   name: string
@@ -77,7 +79,7 @@ interface ChampList {
 }
 
 const checkCost = (cost: string) => {
-  let borderColor = ''
+  let borderColor: string = ''
   if (cost === '1') {
     return (borderColor = 'border-[#213042]')
   } else if (cost === '2') {
@@ -93,100 +95,62 @@ const checkCost = (cost: string) => {
 
 interface choosedFilter {
   Filter: string[]
-  onFilterChange: (newFilter: string) => void
+  closeTab: MenuProps['onClick']
+  isSearch: string
 }
 
 const CostArr = ['1', '2', '3', '4', '5']
 const OriginArr = ['bilgewater', 'darkin', 'demacia', 'freljord', 'empress']
 const ClassArr = ['bastion', 'bruiser', 'challenger', 'gunner', 'invoker']
 
-const ChampList: React.FC<choosedFilter> = ({ Filter, onFilterChange }) => {
-  const [ChampFilterList, setChampFilterList] = useState<ChampList[]>([])
+const ChampList: React.FC<choosedFilter> = ({ Filter, closeTab, isSearch }) => {
+  const filteredChampions = Champions.filter((champion) => {
+    if (Filter.length === 0) {
+      return champion.alt.toLowerCase().includes(isSearch.toLowerCase())
+    } else {
+      const FilterCostArr = Filter.filter((item) => CostArr.includes(item))
+      const FilterOriginArr = Filter.filter((item) => OriginArr.includes(item))
+      const FilterClassArr = Filter.filter((item) => ClassArr.includes(item))
 
-  // useEffect(() => {
-  //   Filter.map((item) => {
-  //     if (item === '1' || item === '2' || item === '3' || item === '4' || item === '5') {
-  //       if (ChampFilterList.length === 0) {
-  //         setChampFilterList(Champions.filter((champ) => champ.stats.Cost === item))
-  //       } else {
-  //         Champions.filter((champ) => {
-  //           champ.stats.Cost === item
-  //           setChampFilterList((prev) => {
-  //             if (prev.includes(champ)) {
-  //               return []
-  //             } else {
-  //               return [...prev, champ]
-  //             }
-  //           })
-  //         })
-  //       }
-  //     }
-  //   })
-  // }, [Filter])
+      const isCostMatched = FilterCostArr.length === 0 || FilterCostArr.includes(champion.stats.Cost)
 
-  useEffect(() => {
-    const FilterCostArr = Filter.filter((item) => CostArr.includes(item))
-    // console.log(FilterCostArr)
-    Champions.filter((champ) => {
-      FilterCostArr.map((price: string) => {
-        if (champ.stats.Cost === price) {
-          if ((ChampFilterList.length = 0)) {
-            setChampFilterList((prev) => [...prev, champ])
-          } else {
-            setChampFilterList((prev) => {
-              if (prev.includes(champ)) {
-                return []
-              } else if (prev.some((item) => item === champ)) {
-                return [...prev.filter((item) => item !== champ)]
-              } else {
-                return [...prev, champ]
-              }
-            })
-          }
-        }
-      })
-    })
-  }, [Filter])
+      const isOriginMatched =
+        FilterOriginArr.length === 0 ||
+        FilterOriginArr.some((origins) =>
+          champion.origin.some((championOrigin) => championOrigin.name.toLocaleLowerCase() === origins),
+        )
 
-  useEffect(() => {
-    const FilterOriginArr = Filter.filter((item) => OriginArr.includes(item))
-    // console.log(FilterCostArr)
-    Champions.filter((champ) => {
-      FilterOriginArr.map((price: string) => {
-        if ((champ.origin[0].name = price)) {
-          if ((ChampFilterList.length = 0)) {
-            setChampFilterList((prev) => [...prev, champ])
-          } else {
-            setChampFilterList((prev) => {
-              if (prev.includes(champ)) {
-                return []
-              } else if (prev.some((item) => item === champ)) {
-                return [...prev.filter((item) => item !== champ)]
-              } else {
-                return [...prev, champ]
-              }
-            })
-          }
-        }
-      })
-    })
-  }, [Filter])
+      const isClassMatched =
+        FilterClassArr.length === 0 ||
+        FilterClassArr.some((classes) =>
+          champion.class.some((championOrigin) => championOrigin.name.toLocaleLowerCase() === classes),
+        )
 
-  // FilterCostArr.map((price: string) => {
-  //   if (champ.stats.Cost === price) {
-  //     if ((ChampFilterList.length = 0)) {
-  //       setChampFilterList((prev) => [...prev, champ])
-  //     } else {
-  //       setChampFilterList((prev) => {
-  //         if (prev.includes(champ)) {
-  //           return []
-  //         } else {
-  //           return [...prev, champ]
-  //         }
-  //       })
-  //     }
+      const isNameMatched = champion.alt.toLowerCase().includes(isSearch.toLowerCase())
+
+      return isCostMatched && isOriginMatched && isClassMatched && isNameMatched
+    }
+  })
+  console.log(filteredChampions)
+
+  // const close = (e: MenuInfo) => {
+  //   if (onclick && typeof onclick === 'function') {
+  //     closeTab(e)
   //   }
-  // })
+  // }
+
+  const convertToMenuInfo = (event: React.MouseEvent<HTMLElement>, item: string): MenuProps['onClick'] => {
+    const key = item
+    const keyPath = ['1', 'costChamp'] // Thay thế bằng cách lấy keyPath từ event hoặc lấy từ một nguồn dữ liệu khác
+
+    const menuInfo: any = {
+      key,
+      keyPath,
+      domEvent: event,
+    }
+    console.log(menuInfo)
+    return menuInfo
+  }
 
   return (
     <ConfigProvider
@@ -209,7 +173,7 @@ const ChampList: React.FC<choosedFilter> = ({ Filter, onFilterChange }) => {
         {Filter.map((item, idx) => {
           return (
             <Button
-              onClick={() => onFilterChange(item)}
+              onClick={(e) => convertToMenuInfo(e, item)}
               key={idx}
               color='#0BC4E2'
               type='primary'
@@ -222,119 +186,62 @@ const ChampList: React.FC<choosedFilter> = ({ Filter, onFilterChange }) => {
         })}
       </div>
       <div className='flex flex-wrap'>
-        {Filter.length > 0
-          ? ChampFilterList.map((champCard, index) => {
-              const borderColor = checkCost(champCard.stats.Cost)
-              return (
-                <div
-                  key={index}
-                  className='flex flex-col justify-start items-center py-[10px] px-[15px] h-[100px]'
-                >
-                  <div className='w-[80px] m-auto text-center'>
-                    <Popover
-                      placement='top'
-                      content={() => {
-                        return (
-                          <PopupHover
-                            origin={champCard.origin}
-                            class={champCard.class}
-                            src={champCard.src}
-                            alt={champCard.alt}
-                            tier={champCard.tier}
-                            itemBuild={champCard.itemBuild}
-                            stats={{
-                              Cost: `${champCard.stats.Cost}`,
-                              Health: `${champCard.stats.Health}`,
-                              Mana: `${champCard.stats.Mana}`,
-                              Armor: `${champCard.stats.Armor}`,
-                              MR: `${champCard.stats.MR}`,
-                              AbilityPower: `${champCard.stats.AbilityPower}`,
-                              DPS: `${champCard.stats.DPS}`,
-                              Damage: `${champCard.stats.Damage}`,
-                              AtkSpd: `${champCard.stats.AtkSpd}`,
-                              CritRate: `${champCard.stats.CritRate}`,
-                              Range: `${champCard.stats.Range}`,
-                            }}
-                            abilities={{
-                              img: `${champCard.abilities.img}`,
-                              name: `${champCard.abilities.name}`,
-                              type: `${champCard.abilities.type}`,
-                              detail: `${champCard.abilities.detail}`,
-                              other: champCard.abilities.other,
-                            }}
-                          ></PopupHover>
-                        )
-                      }}
-                      arrow={false}
-                      key={index}
-                    >
-                      <img
-                        className={` h-[53px] w-[53px] border border-solid ${borderColor} hover:border-orange-400`}
+        {filteredChampions.map((champCard, index) => {
+          const borderColor = checkCost(champCard.stats.Cost)
+          return (
+            <div
+              key={index}
+              className='flex flex-col justify-start items-center py-[10px] px-[15px] h-[100px]'
+            >
+              <div className='w-[80px] m-auto text-center'>
+                <Popover
+                  placement='top'
+                  content={() => {
+                    return (
+                      <PopupHover
+                        origin={champCard.origin}
+                        class={champCard.class}
                         src={champCard.src}
                         alt={champCard.alt}
-                      />
-                    </Popover>
-                  </div>
-                  <div className='w-[80px] justify-self-center self-center m-auto text-center'>{champCard.alt}</div>
-                </div>
-              )
-            })
-          : Champions.map((champCard, index) => {
-              const borderColor = checkCost(champCard.stats.Cost)
-              return (
-                <div
+                        tier={champCard.tier}
+                        itemBuild={champCard.itemBuild}
+                        stats={{
+                          Cost: `${champCard.stats.Cost}`,
+                          Health: `${champCard.stats.Health}`,
+                          Mana: `${champCard.stats.Mana}`,
+                          Armor: `${champCard.stats.Armor}`,
+                          MR: `${champCard.stats.MR}`,
+                          AbilityPower: `${champCard.stats.AbilityPower}`,
+                          DPS: `${champCard.stats.DPS}`,
+                          Damage: `${champCard.stats.Damage}`,
+                          AtkSpd: `${champCard.stats.AtkSpd}`,
+                          CritRate: `${champCard.stats.CritRate}`,
+                          Range: `${champCard.stats.Range}`,
+                        }}
+                        abilities={{
+                          img: `${champCard.abilities.img}`,
+                          name: `${champCard.abilities.name}`,
+                          type: `${champCard.abilities.type}`,
+                          detail: `${champCard.abilities.detail}`,
+                          other: champCard.abilities.other,
+                        }}
+                      ></PopupHover>
+                    )
+                  }}
+                  arrow={false}
                   key={index}
-                  className='flex flex-col justify-start items-center py-[10px] px-[15px] h-[100px]'
                 >
-                  <div className='w-[80px] m-auto text-center'>
-                    <Popover
-                      placement='top'
-                      content={() => {
-                        return (
-                          <PopupHover
-                            origin={champCard.origin}
-                            class={champCard.class}
-                            src={champCard.src}
-                            alt={champCard.alt}
-                            tier={champCard.tier}
-                            itemBuild={champCard.itemBuild}
-                            stats={{
-                              Cost: `${champCard.stats.Cost}`,
-                              Health: `${champCard.stats.Health}`,
-                              Mana: `${champCard.stats.Mana}`,
-                              Armor: `${champCard.stats.Armor}`,
-                              MR: `${champCard.stats.MR}`,
-                              AbilityPower: `${champCard.stats.AbilityPower}`,
-                              DPS: `${champCard.stats.DPS}`,
-                              Damage: `${champCard.stats.Damage}`,
-                              AtkSpd: `${champCard.stats.AtkSpd}`,
-                              CritRate: `${champCard.stats.CritRate}`,
-                              Range: `${champCard.stats.Range}`,
-                            }}
-                            abilities={{
-                              img: `${champCard.abilities.img}`,
-                              name: `${champCard.abilities.name}`,
-                              type: `${champCard.abilities.type}`,
-                              detail: `${champCard.abilities.detail}`,
-                              other: champCard.abilities.other,
-                            }}
-                          ></PopupHover>
-                        )
-                      }}
-                      arrow={false}
-                      key={index}
-                    >
-                      <img
-                        className={` h-[53px] w-[53px] border border-solid ${borderColor} hover:border-orange-400`}
-                        src={champCard.src}
-                        alt={champCard.alt}
-                      />
-                    </Popover>
-                  </div>
-                  <div className='w-[80px] justify-self-center self-center m-auto text-center'>{champCard.alt}</div>
-                </div>
-              )
-            })}
+                  <img
+                    className={` h-[53px] w-[53px] border border-solid ${borderColor} hover:border-orange-400`}
+                    src={champCard.src}
+                    alt={champCard.alt}
+                  />
+                </Popover>
+              </div>
+              <div className='w-[80px] justify-self-center self-center m-auto text-center'>{champCard.alt}</div>
+            </div>
+          )
+        })}
       </div>
     </ConfigProvider>
   )
