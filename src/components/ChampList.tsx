@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Champions } from '../data/Data'
 import { Popover, ConfigProvider, Button } from 'antd'
 import PopupHover from './Popup'
 import { CloseOutlined } from '@ant-design/icons'
-import type { MenuProps } from 'antd'
-import { MenuInfo } from 'rc-menu/lib/interface'
 
 interface BaseItem {
   name: string
@@ -95,7 +93,7 @@ const checkCost = (cost: string) => {
 
 interface choosedFilter {
   Filter: string[]
-  closeTab: MenuProps['onClick']
+  setFilter: any
   isSearch: string
 }
 
@@ -103,7 +101,7 @@ const CostArr = ['1', '2', '3', '4', '5']
 const OriginArr = ['bilgewater', 'darkin', 'demacia', 'freljord', 'empress']
 const ClassArr = ['bastion', 'bruiser', 'challenger', 'gunner', 'invoker']
 
-const ChampList: React.FC<choosedFilter> = ({ Filter, closeTab, isSearch }) => {
+const ChampList: React.FC<choosedFilter> = ({ Filter, setFilter, isSearch }) => {
   const filteredChampions = Champions.filter((champion) => {
     if (Filter.length === 0) {
       return champion.alt.toLowerCase().includes(isSearch.toLowerCase())
@@ -131,26 +129,6 @@ const ChampList: React.FC<choosedFilter> = ({ Filter, closeTab, isSearch }) => {
       return isCostMatched && isOriginMatched && isClassMatched && isNameMatched
     }
   })
-  console.log(filteredChampions)
-
-  // const close = (e: MenuInfo) => {
-  //   if (onclick && typeof onclick === 'function') {
-  //     closeTab(e)
-  //   }
-  // }
-
-  const convertToMenuInfo = (event: React.MouseEvent<HTMLElement>, item: string): MenuProps['onClick'] => {
-    const key = item
-    const keyPath = ['1', 'costChamp'] // Thay thế bằng cách lấy keyPath từ event hoặc lấy từ một nguồn dữ liệu khác
-
-    const menuInfo: any = {
-      key,
-      keyPath,
-      domEvent: event,
-    }
-    console.log(menuInfo)
-    return menuInfo
-  }
 
   return (
     <ConfigProvider
@@ -173,7 +151,7 @@ const ChampList: React.FC<choosedFilter> = ({ Filter, closeTab, isSearch }) => {
         {Filter.map((item, idx) => {
           return (
             <Button
-              onClick={(e) => convertToMenuInfo(e, item)}
+              onClick={() => setFilter(Filter.filter((f) => f !== item))}
               key={idx}
               color='#0BC4E2'
               type='primary'
@@ -199,33 +177,9 @@ const ChampList: React.FC<choosedFilter> = ({ Filter, closeTab, isSearch }) => {
                   content={() => {
                     return (
                       <PopupHover
-                        origin={champCard.origin}
-                        class={champCard.class}
-                        src={champCard.src}
-                        alt={champCard.alt}
-                        tier={champCard.tier}
-                        itemBuild={champCard.itemBuild}
-                        stats={{
-                          Cost: `${champCard.stats.Cost}`,
-                          Health: `${champCard.stats.Health}`,
-                          Mana: `${champCard.stats.Mana}`,
-                          Armor: `${champCard.stats.Armor}`,
-                          MR: `${champCard.stats.MR}`,
-                          AbilityPower: `${champCard.stats.AbilityPower}`,
-                          DPS: `${champCard.stats.DPS}`,
-                          Damage: `${champCard.stats.Damage}`,
-                          AtkSpd: `${champCard.stats.AtkSpd}`,
-                          CritRate: `${champCard.stats.CritRate}`,
-                          Range: `${champCard.stats.Range}`,
-                        }}
-                        abilities={{
-                          img: `${champCard.abilities.img}`,
-                          name: `${champCard.abilities.name}`,
-                          type: `${champCard.abilities.type}`,
-                          detail: `${champCard.abilities.detail}`,
-                          other: champCard.abilities.other,
-                        }}
-                      ></PopupHover>
+                        PopupType='champion'
+                        SynergiesChamp={champCard}
+                      />
                     )
                   }}
                   arrow={false}

@@ -1,9 +1,8 @@
-import React, { useState, createContext } from 'react'
+import React, { useState } from 'react'
 import type { MenuProps } from 'antd'
 import { RiSearchLine } from 'react-icons/ri'
-import { Menu, ConfigProvider, Select, Input, Space } from 'antd'
+import { Menu, ConfigProvider, Select, Input, Button } from 'antd'
 import ChampList from '../components/ChampList'
-import { MenuInfo } from 'rc-menu/lib/interface'
 
 const CostChamp: React.FC<{ style: string }> = (props) => {
   return (
@@ -122,9 +121,7 @@ const Champions: React.FC = () => {
       setChoosedFilter((prevFilter) => [...prevFilter, e.key])
     }
   }
-  const handleMenuClick: MenuProps['onClick'] = (e) => {
-    onClick(e)
-  }
+
   return (
     <ConfigProvider
       theme={{
@@ -158,8 +155,17 @@ const Champions: React.FC = () => {
     >
       <div className='max-w-[1280px] mx-auto my-20 grid grid-cols-4 gap-6'>
         <div className='w-full h-full'>
-          <span className='text-2xl text-[var(--text-highlight-clr)] mb-4 block'>Filters</span>
+          <div className='flex justify-between'>
+            <span className='text-2xl text-[var(--text-highlight-clr)] mb-4 block'>Filters</span>
+            <Button
+              onClick={() => setChoosedFilter([])}
+              className='bg-transparent text-[var(--primary-clr)] border-[var(--primary-clr)]'
+            >
+              Reset
+            </Button>
+          </div>
           <Menu
+            selectedKeys={choosedFilter}
             onClick={onClick}
             defaultOpenKeys={['style']}
             mode='inline'
@@ -199,8 +205,8 @@ const Champions: React.FC = () => {
             />
           </div>
           <ChampList
+            setFilter={setChoosedFilter}
             Filter={choosedFilter}
-            closeTab={(e) => onClick(e)}
             isSearch={searchValue}
           ></ChampList>
         </div>

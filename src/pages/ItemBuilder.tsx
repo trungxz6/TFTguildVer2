@@ -1,12 +1,10 @@
-import React, { ReactNode, useState, useEffect } from 'react'
+import { ReactNode, useState, useEffect } from 'react'
 import partners from '../assets/images/partners-bg.png'
 import { Input, Popover, ConfigProvider } from 'antd'
 import { CloseOutlined, SearchOutlined } from '@ant-design/icons'
-import { BaseItems, Origins, Classes, CombinedItems, Champions, Synergies } from '../data/Data'
+import { BaseItems, CombinedItems } from '../data/Data'
 import { Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-// import ItemPopup from '../components/ItemPopup'
-import BaseItemPopup from '../components/BaseItemPopup'
 import PopupHover from '../components/Popup'
 
 interface BaseItem {
@@ -87,12 +85,10 @@ const ItemBuilder = () => {
               placement='top'
               content={() => {
                 return (
-                  <BaseItemPopup
-                    name={item.name}
-                    desc={item.desc}
-                    stat={item.stat}
-                    src={item.src}
-                  ></BaseItemPopup>
+                  <PopupHover
+                    PopupType='BaseItem'
+                    BaseItem={item}
+                  ></PopupHover>
                 )
               }}
               arrow={false}
@@ -119,12 +115,8 @@ const ItemBuilder = () => {
             content={() => {
               return (
                 <PopupHover
-                  name={record.name}
-                  desc={record.desc}
-                  tier={record.tier}
-                  stat={record.stat || []}
-                  src={record.src}
-                  recipe={record.recipe}
+                  PopupType='CombinedItem'
+                  CombinedItem={record}
                 ></PopupHover>
               )
             }}
@@ -239,12 +231,10 @@ const ItemBuilder = () => {
                       placement='top'
                       content={() => {
                         return (
-                          <BaseItemPopup
-                            name={baseItem.name}
-                            desc={baseItem.desc}
-                            stat={baseItem.stat}
-                            src={baseItem.src}
-                          ></BaseItemPopup>
+                          <PopupHover
+                            PopupType='BaseItem'
+                            BaseItem={baseItem}
+                          ></PopupHover>
                         )
                       }}
                       arrow={false}
@@ -269,7 +259,7 @@ const ItemBuilder = () => {
               </div>
               <div className='border-[1px] border-x-transparent border-b-transparent border-solid border-t-[#1f485f] mb-[20px]'></div>
               <div className='w-full flex flex-wrap'>
-                {searchCombinedItemData.map((combItem, index) => {
+                {searchCombinedItemData.map((combItem: CombinedItem, index) => {
                   let opacity = ''
                   if (combItem === choosedItem) {
                     opacity = 'opacity-100'
@@ -282,12 +272,14 @@ const ItemBuilder = () => {
                       content={() => {
                         return (
                           <PopupHover
-                            name={combItem.name}
-                            desc={combItem.desc}
-                            tier={combItem.tier}
-                            stat={combItem.stat || []}
-                            src={combItem.src}
-                            recipe={combItem.recipe}
+                            PopupType='CombinedItem'
+                            CombinedItem={combItem}
+                            // name={combItem.name}
+                            // desc={combItem.desc}
+                            // tier={combItem.tier}
+                            // stat={combItem.stat || []}
+                            // src={combItem.src}
+                            // recipe={combItem.recipe}
                           ></PopupHover>
                         )
                       }}
