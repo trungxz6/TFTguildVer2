@@ -1,5 +1,5 @@
 import React from 'react'
-import { BaseItems, Origins, Classes, CombinedItems, Champions } from '../data/Data'
+import { CombinedItems } from '../data/Data'
 
 interface BaseItem {
   name: string
@@ -12,7 +12,7 @@ interface BaseItem {
 }
 
 const BaseItemPopup: React.FC<BaseItem> = (BaseItem) => {
-  const { name, desc, src, stat } = BaseItem
+  const { name } = BaseItem
 
   const IntoCombinedItem = CombinedItems.filter((item) => {
     const isItemIncluded = item.recipe.some((recipeItem) => recipeItem.name === name)
