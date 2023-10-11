@@ -7,6 +7,7 @@ import ChampionInfo from './pages/ChampionInfo'
 import TeamComps from './pages/TeamComps'
 import ItemBuilder from './pages/ItemBuilder'
 import Champions from './pages/Champions'
+import MetaReport from './pages/MetaReport'
 
 function App() {
   return (
@@ -26,7 +27,15 @@ function App() {
           element={<Champions />}
         ></Route>
         <Route
+          path='/meta-report'
+          element={<MetaReport />}
+        />
+        <Route
           path='/champions/aatrox'
+          element={<MetaReport />}
+        />
+        <Route
+          path='/champion'
           element={<ChampionInfo />}
         ></Route>
         <Route
