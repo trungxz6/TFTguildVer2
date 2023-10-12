@@ -8,6 +8,7 @@ import TeamComps from './pages/TeamComps'
 import ItemBuilder from './pages/ItemBuilder'
 import Champions from './pages/Champions'
 import MetaReport from './pages/MetaReport'
+import Database from './pages/Database'
 
 function App() {
   return (
@@ -31,16 +32,16 @@ function App() {
           element={<MetaReport />}
         />
         <Route
-          path='/champions/aatrox'
-          element={<MetaReport />}
-        />
-        <Route
           path='/champion'
           element={<ChampionInfo />}
-        ></Route>
+        />
         <Route
           path='/item-builder'
           element={<ItemBuilder />}
+        />
+        <Route
+          path='/database'
+          element={<Database />}
         />
       </Routes>
       <Footer />

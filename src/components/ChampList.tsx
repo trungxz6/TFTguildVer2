@@ -3,6 +3,7 @@ import { Champions } from '../data/Data'
 import { Popover, ConfigProvider, Button } from 'antd'
 import PopupHover from './Popup'
 import { CloseOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
 
 interface BaseItem {
   name: string
@@ -102,6 +103,8 @@ const OriginArr = ['bilgewater', 'darkin', 'demacia', 'freljord', 'empress']
 const ClassArr = ['bastion', 'bruiser', 'challenger', 'gunner', 'invoker']
 
 const ChampList: React.FC<choosedFilter> = ({ Filter, setFilter, isSearch }) => {
+  const navigate = useNavigate()
+
   const filteredChampions = Champions.filter((champion) => {
     if (Filter.length === 0) {
       return champion.alt.toLowerCase().includes(isSearch.toLowerCase())
@@ -186,6 +189,7 @@ const ChampList: React.FC<choosedFilter> = ({ Filter, setFilter, isSearch }) => 
                   key={index}
                 >
                   <img
+                    onClick={() => navigate(`/champion?champion=${champCard.alt}`)}
                     className={` h-[53px] w-[53px] border border-solid ${borderColor} hover:border-orange-400`}
                     src={champCard.src}
                     alt={champCard.alt}

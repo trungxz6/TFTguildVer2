@@ -184,9 +184,9 @@ const ItemBuilder = () => {
             colorBgContainer: '#102531',
             headerSplitColor: 'transparent',
             headerColor: '#ffffff',
-            // rowHoverBg: '#ffffff',
-            // colorBorderSecondary: '#7FFF7F',
-            // borderColor: '#7FFF7F',
+            rowHoverBg: 'var(--bg-clr)',
+            colorBorderSecondary: '#7FFF7F',
+            borderColor: 'var(--border-clr)',
           },
         },
       }}
@@ -313,7 +313,7 @@ const ItemBuilder = () => {
               <div>{choosedItem.name}</div>
             </div>
             <Table
-              className='mt-[20px]'
+              className='mt-[20px] border border-solid border-[var(--border-clr)]'
               columns={columns}
               dataSource={CombinedItemByChoose}
               pagination={false}
