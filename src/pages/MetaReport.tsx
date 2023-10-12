@@ -113,6 +113,10 @@ const MetaReport: React.FC = () => {
           </div>
           <SortBy type='metaReport' />
           <MetaReportCard />
+          <MetaReportCard />
+          <MetaReportCard />
+          <MetaReportCard />
+          <MetaReportCard />
         </div>
       </div>
     </ConfigProvider>
