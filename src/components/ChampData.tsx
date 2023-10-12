@@ -1,23 +1,22 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { Avatar, Popover, ConfigProvider } from 'antd'
-import { BaseItems, Origins, Classes, CombinedItems, Champions, Synergies } from '../data/Data'
+import { Champions, Synergies } from '../data/Data'
 import partners from '../assets/images/partners-bg.png'
-import ItemPopup from './ItemPopup'
-import ChampPopup from './ChampPopup'
+import PopupHover from './Popup'
 
 const infoMenu = ['Health', 'Mana', 'Armor', 'MR', 'AbilityPower', 'DPS', 'Damage', 'AtkSpd', 'CritRate', 'Range']
-const AatroxData = Champions[0]
-
-const trait = [...AatroxData.origin, ...AatroxData.class]
-
-// GET SYNERGIES
-const FilterSynergiesChamp = Synergies.map((syn) => {
-  const filteredChamp = syn.champ.filter((champ) => champ !== Champions[0])
-  return { name: syn.name, champ: filteredChamp }
-})
 
 const ChampData: React.FC = () => {
+  const AatroxData = Champions[0]
+
+  const trait = [...AatroxData.origin, ...AatroxData.class]
+
+  // GET SYNERGIES
+  const FilterSynergiesChamp = Synergies.map((syn) => {
+    const filteredChamp = syn.champ.filter((champ) => champ !== Champions[0])
+    return { name: syn.name, champ: filteredChamp }
+  })
+
   return (
     <ConfigProvider
       theme={{
@@ -57,14 +56,10 @@ const ChampData: React.FC = () => {
                       placement='top'
                       content={() => {
                         return (
-                          <ItemPopup
-                            name={item.name}
-                            desc={item.desc}
-                            tier={item.tier}
-                            stat={item.stat}
-                            src={item.src}
-                            recipe={item.recipe}
-                          ></ItemPopup>
+                          <PopupHover
+                            PopupType='CombinedItem'
+                            CombinedItem={item}
+                          ></PopupHover>
                         )
                       }}
                       arrow={false}
@@ -218,41 +213,16 @@ const ChampData: React.FC = () => {
                     )}
                     {FilterSynergiesChamp.map((he, idx) => {
                       if (item === he.name) {
-                        // RETURN TO A MAP FUNCTION UNDER HEREEEEEE - TO BE CONTINUE
                         return he.champ.map((synChamp) => {
                           return (
                             <Popover
                               placement='top'
                               content={() => {
                                 return (
-                                  <ChampPopup
-                                    origin={synChamp.origin}
-                                    class={synChamp.class}
-                                    src={synChamp.src}
-                                    alt={synChamp.alt}
-                                    tier={synChamp.tier}
-                                    itemBuild={synChamp.itemBuild}
-                                    stats={{
-                                      Cost: `${synChamp.stats.Cost}`,
-                                      Health: `${synChamp.stats.Health}`,
-                                      Mana: `${synChamp.stats.Mana}`,
-                                      Armor: `${synChamp.stats.Armor}`,
-                                      MR: `${synChamp.stats.MR}`,
-                                      AbilityPower: `${synChamp.stats.AbilityPower}`,
-                                      DPS: `${synChamp.stats.DPS}`,
-                                      Damage: `${synChamp.stats.Damage}`,
-                                      AtkSpd: `${synChamp.stats.AtkSpd}`,
-                                      CritRate: `${synChamp.stats.CritRate}`,
-                                      Range: `${synChamp.stats.Range}`,
-                                    }}
-                                    abilities={{
-                                      img: `${synChamp.abilities.img}`,
-                                      name: `${synChamp.abilities.name}`,
-                                      type: `${synChamp.abilities.type}`,
-                                      detail: `${synChamp.abilities.detail}`,
-                                      other: synChamp.abilities.other,
-                                    }}
-                                  ></ChampPopup>
+                                  <PopupHover
+                                    PopupType='champion'
+                                    SynergiesChamp={synChamp}
+                                  ></PopupHover>
                                 )
                               }}
                               arrow={false}
