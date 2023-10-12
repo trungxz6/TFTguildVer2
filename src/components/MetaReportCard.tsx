@@ -303,38 +303,6 @@ const MetaReportCard: React.FC = () => {
           </div>
         </div>
       </div>
-      <Tab />
-      {/* <div className='grid grid-cols-3'>
-        <span
-          className='flex items-center justify-center py-2 bg-[var(--bg-clr)] hover:bg-[var(--btn-clr)] hover:cursor-pointer'
-          style={{
-            borderTop: '1px solid var(--border-clr)',
-            borderBottom: '1px solid var(--border-clr)',
-            borderRight: '1px solid var(--border-clr)',
-          }}
-        >
-          Level 8
-        </span>
-        <span
-          className='flex items-center justify-center py-2 bg-[var(--bg-clr)] hover:bg-[var(--btn-clr)] hover:cursor-pointer'
-          style={{
-            borderTop: '1px solid var(--border-clr)',
-            borderBottom: '1px solid var(--border-clr)',
-            borderRight: '1px solid var(--border-clr)',
-          }}
-        >
-          Level 9
-        </span>
-        <span
-          className='flex items-center justify-center py-2 bg-[var(--bg-clr)] hover:bg-[var(--btn-clr)] hover:cursor-pointer'
-          style={{
-            borderTop: '1px solid var(--border-clr)',
-            borderBottom: '1px solid var(--border-clr)',
-          }}
-        >
-          Similar Comps
-        </span>
-      </div> */}
     </div>
   )
 

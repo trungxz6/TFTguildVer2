@@ -9,7 +9,7 @@ const SortBy: React.FC<{ type: string }> = (props) => {
             Patch 13.9b
           </span>
           <div className='w-[32%] flex items-center justify-between'>
-            <span className='bg-[--bg-highlight-clr] h-[36px] cursor-pointer text-[#020202] hover:text-white hover:bg-[var(--btn-clr)] px-2 rounded flex items-center'>
+            <span className='bg-[--bg-highlight-clr] h-[36px] cursor-pointer text-[#88A0A7] hover:text-white hover:bg-[var(--btn-clr)] px-2 rounded flex items-center'>
               <span className='text-[#bfff7f] text-[22px] mr-1'>▴</span>Tier Up
             </span>
             <span className='bg-[--bg-highlight-clr] h-[36px] cursor-pointer text-[#88A0A7] hover:text-white hover:bg-[var(--btn-clr)] px-2 rounded flex items-center'>
