@@ -24,12 +24,10 @@ const Tile: React.FC = () => {
   return (
     <>
       {droppedImg ? (
-        <div
-          onDoubleClick={() => delChamp()}
-          className='cursor-pointer select-none'
-        >
+        <div className='cursor-pointer select-none'>
           <div
             ref={drop}
+            onDoubleClick={() => delChamp()}
             className='w-[72px] h-[80px] mr-4 hexagon flex items-center justify-center'
             style={{ backgroundColor }}
           >
