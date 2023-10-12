@@ -27,7 +27,7 @@ const TileItem: React.FC = () => {
       {droppedImg ? (
         <div
           ref={drop}
-          className='w-[72px] h-[80px] absolute bottom-0 flex justify-center items-end'
+          className='w-[72px] h-[32px] absolute bottom-0 flex justify-center items-end'
           style={{ backgroundColor }}
         >
           {droppedImg.length <= 3
