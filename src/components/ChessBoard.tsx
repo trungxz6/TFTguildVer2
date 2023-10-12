@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import Tile from './Tile'
+import Tile from './TileChamp'
 
 const ChessBoard: React.FC<{
   size: string
@@ -162,17 +162,17 @@ const ChessBoard: React.FC<{
                 return <Tile />
               })}
             </div>
-            <div className='flex absolute top-[97px] left-[58px]'>
+            <div className='flex absolute top-[74px] left-[44px]'>
               {row2.map(() => {
                 return <Tile />
               })}
             </div>
-            <div className='flex absolute top-[194px]'>
+            <div className='flex absolute top-[148px]'>
               {row3.map(() => {
                 return <Tile />
               })}
             </div>
-            <div className='flex absolute top-[291px] left-[58px]'>
+            <div className='flex absolute top-[222px] left-[44px]'>
               {row4.map(() => {
                 return <Tile />
               })}
