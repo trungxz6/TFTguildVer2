@@ -20,7 +20,7 @@ const Champion: React.FC<{ src: string }> = (props) => {
   return (
     <img
       ref={drag}
-      className='w-[48px] border-[1px] border-solid border-[var(--border-5c-clr)] hover:border-orange-500 mr-6'
+      className='w-[48px] border-[1px] border-solid border-[var(--border-5c-clr)] hover:border-orange-500 mr-6 mb-4'
       src={props.src}
       alt=''
       style={{
@@ -44,7 +44,7 @@ const Item: React.FC<{ src: string }> = (props) => {
   return (
     <img
       ref={drag}
-      className='w-[48px] border-[1px] border-solid border-[var(--border-5c-clr)] hover:border-orange-500 mr-6'
+      className='w-[48px] border-[1px] border-solid border-[var(--border-5c-clr)] hover:border-orange-500 mr-6 mb-4'
       src={props.src}
       alt='img'
       style={{
