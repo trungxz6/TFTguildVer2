@@ -2,10 +2,11 @@ import React from 'react'
 import { RiSearchLine } from 'react-icons/ri'
 import { Champions, CombinedItems } from '../data/Data'
 import { Button, ConfigProvider, Input, Select } from 'antd'
-import ChessBoard from '../components/ChessBoard'
 import { DndProvider, useDrag } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { ChampionType, ItemType } from '../constants/constants'
+import { useNavigate } from 'react-router-dom'
+import ChessBoard from '../components/ChessBoard'
 
 const Champion: React.FC<{ src: string }> = (props) => {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -20,7 +21,7 @@ const Champion: React.FC<{ src: string }> = (props) => {
   return (
     <img
       ref={drag}
-      className='w-[48px] border-[1px] border-solid border-[var(--border-5c-clr)] hover:border-orange-500 mr-6 mb-4'
+      className='w-[40px] border-[1px] border-solid border-[var(--border-5c-clr)] hover:border-orange-500 mr-4 mb-4'
       src={props.src}
       alt=''
       style={{
@@ -44,7 +45,7 @@ const Item: React.FC<{ src: string }> = (props) => {
   return (
     <img
       ref={drag}
-      className='w-[48px] border-[1px] border-solid border-[var(--border-5c-clr)] hover:border-orange-500 mr-6 mb-4'
+      className='w-[40px] border-[1px] border-solid border-[var(--border-5c-clr)] hover:border-orange-500 mr-4 mb-4'
       src={props.src}
       alt='img'
       style={{
@@ -56,6 +57,7 @@ const Item: React.FC<{ src: string }> = (props) => {
 }
 
 const TeamBuilder: React.FC = () => {
+  const navigate = useNavigate()
   const { Option } = Select
 
   const Options = [
@@ -128,14 +130,25 @@ const TeamBuilder: React.FC = () => {
                 ))}
               </Select>
             </div>
-            <Button
-              type='primary'
-              className='bg-[#0BC4E2] text-[var(--text-clr)]'
-            >
-              Share
-            </Button>
+            <div>
+              <Button
+                ghost
+                danger
+                type='primary'
+                className='mr-4'
+                onClick={() => navigate(0)}
+              >
+                Reset
+              </Button>
+              <Button
+                type='primary'
+                className='bg-[#0BC4E2] text-[var(--text-clr)]'
+              >
+                Share
+              </Button>
+            </div>
           </div>
-          <div className='h-[400px] flex justify-center'>
+          <div className='h-[280px] flex justify-center'>
             <ChessBoard size='drop' />
           </div>
           <div className='grid grid-cols-2 gap-6 mt-20'>
@@ -148,7 +161,7 @@ const TeamBuilder: React.FC = () => {
                 addonAfter={suffix}
               />
               <div
-                className='bg-[var(--bg-highlight-clr)] p-4'
+                className='bg-[var(--bg-highlight-clr)] p-4 pb-0'
                 style={{ border: '1px solid var(--border-clr)', borderTop: 0 }}
               >
                 {Champions.map((champ) => (
@@ -164,7 +177,7 @@ const TeamBuilder: React.FC = () => {
                 prefix={prefix}
               />
               <div
-                className='bg-[var(--bg-highlight-clr)] p-4'
+                className='bg-[var(--bg-highlight-clr)] p-4 pb-0'
                 style={{ border: '1px solid var(--border-clr)' }}
               >
                 {CombinedItems.map((item) => (
