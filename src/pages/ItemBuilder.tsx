@@ -124,6 +124,7 @@ const ItemBuilder = () => {
             key={_}
           >
             <img
+              onClick={() => setChoosedItem(record)}
               className='cursor-pointer h-[33px], w-[33px] mr-[10px] border border-solid border-[#17313a]'
               src={record.src}
               alt={record.name}

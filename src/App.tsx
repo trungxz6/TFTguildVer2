@@ -49,7 +49,7 @@ function App() {
           element={<ItemBuilder />}
         />
         <Route
-          path='/database'
+          path='/database/champions'
           element={<Database />}
         />
       </Routes>
