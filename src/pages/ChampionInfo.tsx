@@ -3,22 +3,21 @@ import { Avatar, Popover, ConfigProvider } from 'antd'
 import { Champions, Synergies } from '../data/Data'
 import partners from '../assets/images/partners-bg.png'
 import PopupHover from '../components/Popup'
-import { useQueryString } from '../utils/utils'
+import { useParams } from 'react-router-dom'
 
-const infoMenu = ['Health', 'Mana', 'Armor', 'MR', 'AbilityPower', 'DPS', 'Damage', 'AtkSpd', 'CritRate', 'Range']
+// const infoMenu = ['Health', 'Mana', 'Armor', 'MR', 'AbilityPower', 'DPS', 'Damage', 'AtkSpd', 'CritRate', 'Range']
 
 const ChampData: React.FC = () => {
-  const queryString = useQueryString()
-  const champion = queryString.champion
-  // console.log(champion)
+  const { champ } = useParams()
+  console.log(champ)
 
   const AatroxData = Champions.find((item) => {
-    return item.alt === champion
+    return item.alt.toLowerCase() === champ?.toLowerCase()
   })
 
   const trait = AatroxData && [...AatroxData.origin, ...AatroxData.class]
 
-  console.log(trait)
+  // console.log(trait)
   // GET SYNERGIES
   const FilterSynergiesChamp = Synergies.map((syn) => {
     const filteredChamp = syn.champ.filter((champ) => champ !== AatroxData)
@@ -93,43 +92,43 @@ const ChampData: React.FC = () => {
                   className='mx-[5px] w-[15px] opacity-[0.5]'
                   src='https://rerollcdn.com/ui/icon-gold.svg'
                 />
-                <span className='text-white'>{AatroxData?.stats.Cost}</span>
+                <span className='text-white ml-[5px]'>{AatroxData?.stats.Cost}</span>
               </div>
               <div className='text-[#88A0A7]  mb-[10px] flex flex-row'>
                 Health:
-                <span className='text-white'>{AatroxData?.stats.Health}</span>
+                <span className='text-white ml-[5px]'>{AatroxData?.stats.Health}</span>
               </div>
               <div className='text-[#88A0A7]  mb-[10px] flex flex-row'>
                 Armor:
-                <span className='text-white'>{AatroxData?.stats.Armor}</span>
+                <span className='text-white ml-[5px]'>{AatroxData?.stats.Armor}</span>
               </div>
               <div className='text-[#88A0A7]  mb-[10px] flex flex-row'>
                 MR:
-                <span className='text-white'>{AatroxData?.stats.MR}</span>
+                <span className='text-white ml-[5px]'>{AatroxData?.stats.MR}</span>
               </div>
               <div className='text-[#88A0A7]  mb-[10px] flex flex-row'>
                 AbilityPower:
-                <span className='text-white'>{AatroxData?.stats.AbilityPower}</span>
+                <span className='text-white ml-[5px]'>{AatroxData?.stats.AbilityPower}</span>
               </div>
               <div className='text-[#88A0A7]  mb-[10px] flex flex-row'>
                 DPS:
-                <span className='text-white'>{AatroxData?.stats.DPS}</span>
+                <span className='text-white ml-[5px]'>{AatroxData?.stats.DPS}</span>
               </div>
               <div className='text-[#88A0A7]  mb-[10px] flex flex-row'>
                 Damage:
-                <span className='text-white'>{AatroxData?.stats.Damage}</span>
+                <span className='text-white ml-[5px]'>{AatroxData?.stats.Damage}</span>
               </div>
               <div className='text-[#88A0A7]  mb-[10px] flex flex-row'>
                 AtkSpd:
-                <span className='text-white'>{AatroxData?.stats.AtkSpd}</span>
+                <span className='text-white ml-[5px]'>{AatroxData?.stats.AtkSpd}</span>
               </div>
               <div className='text-[#88A0A7]  mb-[10px] flex flex-row'>
                 CritRate:
-                <span className='text-white'>{AatroxData?.stats.CritRate}</span>
+                <span className='text-white ml-[5px]'>{AatroxData?.stats.CritRate}</span>
               </div>
               <div className='text-[#88A0A7]  mb-[10px] flex flex-row'>
                 Range:
-                <span className='text-white'>{AatroxData?.stats.Range}</span>
+                <span className='text-white ml-[5px]'>{AatroxData?.stats.Range}</span>
               </div>
 
               {/* STATS */}
@@ -252,7 +251,7 @@ const ChampData: React.FC = () => {
                   <div className='bg-transparent flex justify-start items-center'>
                     {typeof item !== 'string' && (
                       <img
-                        onClick={() => console.log(item)}
+                        // onClick={() => console.log(item)}
                         className='w-[32px] h-[32px] mr-[20px] bg-transparent'
                         src={item.src}
                       />
@@ -275,7 +274,7 @@ const ChampData: React.FC = () => {
                               key={index}
                             >
                               <img
-                                onClick={() => console.log(synChamp.abilities.other)}
+                                // onClick={() => console.log(synChamp.abilities.other)}
                                 key={idx}
                                 className='w-[50px] h-[50px] my-[5px] mx-[10px] border border-yellow-400 border-solid bg-transparent hover:border-orange-500 transition ease duration-300'
                                 src={synChamp.src}

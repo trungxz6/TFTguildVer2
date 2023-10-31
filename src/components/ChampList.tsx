@@ -189,7 +189,8 @@ const ChampList: React.FC<choosedFilter> = ({ Filter, setFilter, isSearch }) => 
                   key={index}
                 >
                   <img
-                    onClick={() => navigate(`/champion?champion=${champCard.alt}`)}
+                    // onClick={() => navigate(`/champion?champion=${champCard.alt}`)}
+                    onClick={() => navigate(`/champions/${champCard.alt}`)}
                     className={` h-[53px] w-[53px] border border-solid ${borderColor} hover:border-orange-400`}
                     src={champCard.src}
                     alt={champCard.alt}
