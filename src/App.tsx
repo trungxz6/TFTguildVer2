@@ -8,7 +8,9 @@ import TeamComps from './pages/TeamComps'
 import ItemBuilder from './pages/ItemBuilder'
 import Champions from './pages/Champions'
 import MetaReport from './pages/MetaReport'
+import Database from './pages/Database'
 import TeamBuilder from './pages/TeamBuilder'
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -28,6 +30,10 @@ function App() {
           element={<Champions />}
         />
         <Route
+          path='/champions/:champ'
+          element={<ChampionInfo />}
+        />
+        <Route
           path='/meta-report'
           element={<MetaReport />}
         />
@@ -36,16 +42,16 @@ function App() {
           element={<TeamBuilder />}
         />
         <Route
-          path='/champions/aatrox'
-          element={<MetaReport />}
-        />
-        <Route
-          path='/champion'
-          element={<ChampionInfo />}
-        />
-        <Route
           path='/item-builder'
           element={<ItemBuilder />}
+        />
+        <Route
+          path='/database/champions'
+          element={<Database />}
+        />
+        <Route
+          path='/patch-notes'
+          element={<Profile />}
         />
       </Routes>
       <Footer />
