@@ -4,9 +4,11 @@ import axios from 'axios'
 const Profile = () => {
   const [searchText, setSearchText] = useState('')
   const API_KEY = 'RGAPI-edaa3d90-fe1a-4b0a-9081-697305f31c2d'
+  const [matchHistory, setMatchHistory] = useState([])
 
   const getHistory = async () => {
     try {
+      //Get
       const APICallUserID =
         'https://vn2.api.riotgames.com/tft/summoner/v1/summoners/by-name/' + searchText + '?api_key=' + API_KEY
       const response1 = await axios.get(APICallUserID)
@@ -25,6 +27,7 @@ const Profile = () => {
         const APICallMatchInfo = 'https://sea.api.riotgames.com/tft/match/v1/matches/' + item + '?api_key=' + API_KEY
 
         const response3 = await axios.get(APICallMatchInfo)
+        console.log(response3.data.info)
         console.log(response3.data.info)
       })
     } catch (error) {
