@@ -7,6 +7,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { ChampionType, ItemType } from '../constants/constants'
 import { useNavigate } from 'react-router-dom'
 import ChessBoard from '../components/ChessBoard'
+import html2canvas from 'html2canvas'
 
 const Champion: React.FC<{ src: string }> = (props) => {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -87,6 +88,18 @@ const TeamBuilder: React.FC = () => {
     </div>
   )
 
+  const shareBoard = () => {
+    const board = document.getElementById('board')
+    html2canvas(board!, {
+      backgroundColor: '#0d202b',
+      useCORS: true,
+    }).then((canvas: any) => {
+      const link = document.createElement('a')
+      link.href = canvas.toDataURL()
+      link.download = 'tft-team-builder.png'
+      link.click()
+    })
+  }
   return (
     <ConfigProvider
       theme={{
@@ -112,7 +125,10 @@ const TeamBuilder: React.FC = () => {
       }}
     >
       <DndProvider backend={HTML5Backend}>
-        <div className='max-w-[1280px] mx-auto my-20 '>
+        <div
+          id='board'
+          className='max-w-[1280px] mx-auto my-20 '
+        >
           <div className='flex items-center justify-between mb-10'>
             <div className='flex items-center'>
               <span className='text-2xl text-[var(--text-highlight-clr)] mr-6 block'>TFT Team Builder</span>
@@ -143,6 +159,7 @@ const TeamBuilder: React.FC = () => {
               <Button
                 type='primary'
                 className='bg-[#0BC4E2] text-[var(--text-clr)]'
+                onClick={() => shareBoard()}
               >
                 Share
               </Button>
