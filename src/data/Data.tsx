@@ -209,6 +209,29 @@ export const Origins = [
       { point: 9, desc: `380% Ionian bonus, 4 enlightened` },
     ],
   },
+  {
+    name: 'Empress',
+    type: 'Origin',
+    src: 'https://rerollcdn.com/icons/empress.png',
+    desc: '',
+    level: [
+      {
+        point: 1,
+        desc: `When Bel'Veth kills an enemy, they leave behind Void Coral that she will consume. The first Coral increases her max Health by 50%, while further Coral heals her 20% maximum Health. When a Void Coral is consumed, she deals 10% maximum Health as magic damage to enemies within 2 hexes.`,
+      },
+    ],
+  },
+  {
+    name: 'Void',
+    type: 'Origin',
+    src: 'https://rerollcdn.com/icons/void.png',
+    desc: `Get a placeable void egg. At the start of combat, it hatches into an unspeakable horror and knocks up adjacent enemies. Each Void star level increases the horror's Health and Ability Power by 25%.`,
+    level: [
+      { point: 3, desc: `Void Remora` },
+      { point: 6, desc: `Rift Herald` },
+      { point: 9, desc: `Baron Nashor` },
+    ],
+  },
 ]
 
 export const Classes = [
@@ -799,8 +822,8 @@ export const Champions = [
   },
   {
     id: 4,
-    origin: [Origins[0]],
-    class: [Classes[0], Classes[1]],
+    origin: [Origins[2], Origins[3]],
+    class: [],
     src: `https://rerollcdn.com/characters/Skin/9.5/Belveth.png`,
     alt: 'Belveth',
     tier: 'A',
