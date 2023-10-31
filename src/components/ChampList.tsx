@@ -132,13 +132,17 @@ const ChampList: React.FC<choosedFilter> = ({ Filter, onFilterChange }) => {
         if (champ.stats.Cost === price) {
           if ((ChampFilterList.length = 0)) {
             setChampFilterList((prev) => [...prev, champ])
+            console.log('running 1...')
           } else {
             setChampFilterList((prev) => {
               if (prev.includes(champ)) {
+                console.log('running 2...')
                 return []
               } else if (prev.some((item) => item === champ)) {
+                console.log('running 3...')
                 return [...prev.filter((item) => item !== champ)]
               } else {
+                console.log('running 4...')
                 return [...prev, champ]
               }
             })
