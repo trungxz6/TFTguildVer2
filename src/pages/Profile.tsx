@@ -7,8 +7,6 @@ const Profile = () => {
   const [searchText, setSearchText] = useState('')
   const [matchHistory, setMatchHistory] = useState<string[]>([])
   const [playerId, setPlayerId] = useState('')
-  const [matchHistory, setMatchHistory] = useState<string[]>([])
-  const [playerId, setPlayerId] = useState('')
   const API_KEY = 'RGAPI-edaa3d90-fe1a-4b0a-9081-697305f31c2d'
 
   const getHistory = async () => {
