@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import type { MenuProps } from 'antd'
 import { RiSearchLine } from 'react-icons/ri'
-import { Menu, ConfigProvider, Select, Input, Space } from 'antd'
+import { Menu, ConfigProvider, Select, Input, Button } from 'antd'
 import ChampList from '../components/ChampList'
 
 const CostChamp: React.FC<{ style: string }> = (props) => {
@@ -105,19 +105,23 @@ const renderOption = (option: { value: string; label: string }) => {
 
 const Champions: React.FC = () => {
   const [choosedFilter, setChoosedFilter] = useState<string[]>([])
+  const [searchValue, setSearchValue] = useState('')
 
-  const handleFilterChange = (newFilter: string) => {
-    setChoosedFilter(choosedFilter.filter((item) => item !== newFilter))
+  const handleSearchValue = (searchTerm: string) => {
+    setSearchValue(searchTerm)
   }
 
   // console.log('click ', choosedFilter)
+
   const onClick: MenuProps['onClick'] = (e) => {
+    console.log(e)
     if (choosedFilter.includes(e.key)) {
       setChoosedFilter((prevfilter) => prevfilter.filter((item) => item !== e.key))
     } else {
       setChoosedFilter((prevFilter) => [...prevFilter, e.key])
     }
   }
+
   return (
     <ConfigProvider
       theme={{
@@ -151,8 +155,17 @@ const Champions: React.FC = () => {
     >
       <div className='max-w-[1280px] mx-auto my-20 grid grid-cols-4 gap-6'>
         <div className='w-full h-full'>
-          <span className='text-2xl text-[var(--text-highlight-clr)] mb-4 block'>Filters</span>
+          <div className='flex justify-between'>
+            <span className='text-2xl text-[var(--text-highlight-clr)] mb-4 block'>Filters</span>
+            <Button
+              onClick={() => setChoosedFilter([])}
+              className='bg-transparent text-[var(--primary-clr)] border-[var(--primary-clr)]'
+            >
+              Reset
+            </Button>
+          </div>
           <Menu
+            selectedKeys={choosedFilter}
             onClick={onClick}
             defaultOpenKeys={['style']}
             mode='inline'
@@ -182,6 +195,9 @@ const Champions: React.FC = () => {
               </Select>
             </div>
             <Input
+              onChange={(e) => {
+                handleSearchValue(e.target.value)
+              }}
               placeholder='Search by name, origin or class...'
               allowClear
               className='w-[280px]'
@@ -189,8 +205,9 @@ const Champions: React.FC = () => {
             />
           </div>
           <ChampList
+            setFilter={setChoosedFilter}
             Filter={choosedFilter}
-            onFilterChange={handleFilterChange}
+            isSearch={searchValue}
           ></ChampList>
         </div>
       </div>

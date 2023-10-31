@@ -1,7 +1,9 @@
 import React, { ReactNode } from 'react'
+import Tile from './TileChamp'
 
 const ChessBoard: React.FC<{
   size: string
+  ref?: any
   tile1?: ReactNode
   tile2?: ReactNode
   tile3?: ReactNode
@@ -33,6 +35,7 @@ const ChessBoard: React.FC<{
 }> = (props) => {
   const {
     size,
+    ref,
     tile1,
     tile2,
     tile3,
@@ -62,197 +65,117 @@ const ChessBoard: React.FC<{
     tile27,
     tile28,
   } = props
+
+  const row1 = [tile1, tile2, tile3, tile4, tile5, tile6, tile7]
+  const row2 = [tile8, tile9, tile10, tile11, tile12, tile13, tile14]
+  const row3 = [tile15, tile16, tile17, tile18, tile19, tile20, tile21]
+  const row4 = [tile22, tile23, tile24, tile25, tile26, tile27, tile28]
   return (
     <>
       {(size === 'large' && (
         <div className='relative'>
           <div className='flex'>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile1}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile2}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile3}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile4}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile5}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile6}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile7}</div>
-            </div>
+            {row1.map((tile) => {
+              return (
+                <div
+                  ref={ref}
+                  className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'
+                >
+                  <div className='bg-[#102531] w-[100px] h-[110px] hexagon flex'>{tile}</div>
+                </div>
+              )
+            })}
           </div>
           <div className='flex absolute top-[97px] left-[58px]'>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile8}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile9}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile10}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile11}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile12}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile13}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile14}</div>
-            </div>
+            {row2.map((tile) => {
+              return (
+                <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
+                  <div className='bg-[#102531] w-[100px] h-[110px] hexagon flex'>{tile}</div>
+                </div>
+              )
+            })}
           </div>
           <div className='flex absolute top-[194px]'>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile15}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile16}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile17}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile18}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile19}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile20}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile21}</div>
-            </div>
+            {row3.map((tile) => {
+              return (
+                <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
+                  <div className='bg-[#102531] w-[100px] h-[110px] hexagon flex'>{tile}</div>
+                </div>
+              )
+            })}
           </div>
           <div className='flex absolute top-[291px] left-[58px]'>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile22}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile23}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile24}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile25}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile26}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile27}</div>
-            </div>
-            <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex flex items-center justify-center'>
-              <div className='bg-[#123040] w-[100px] h-[110px] hexagon flex'>{tile28}</div>
-            </div>
+            {row4.map((tile) => {
+              return (
+                <div className='bg-[var(--border-clr)] w-[106px] h-[118px] m-[5px] hexagon flex items-center justify-center'>
+                  <div className='bg-[#102531] w-[100px] h-[110px] hexagon flex'>{tile}</div>
+                </div>
+              )
+            })}
           </div>
         </div>
       )) ||
         (size === 'small' && (
           <div className='relative'>
             <div className='flex'>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile1}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile2}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile3}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile4}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile5}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile6}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile7}</div>
-              </div>
+              {row1.map((tile) => {
+                return (
+                  <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
+                    <div className='bg-[#102531] w-[31px] h-[34px] hexagon flex'>{tile}</div>
+                  </div>
+                )
+              })}
             </div>
             <div className='flex absolute top-[32px] left-[19px]'>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile8}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile9}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile10}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile11}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile12}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile13}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile14}</div>
-              </div>
+              {row2.map((tile) => {
+                return (
+                  <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
+                    <div className='bg-[#102531] w-[31px] h-[34px] hexagon flex'>{tile}</div>
+                  </div>
+                )
+              })}
             </div>
             <div className='flex absolute top-[64px]'>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile15}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile16}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile17}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile18}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile19}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile20}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile21}</div>
-              </div>
+              {row3.map((tile) => {
+                return (
+                  <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
+                    <div className='bg-[#102531] w-[31px] h-[34px] hexagon flex'>{tile}</div>
+                  </div>
+                )
+              })}
             </div>
             <div className='flex absolute top-[96px] left-[19px]'>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile22}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile23}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile24}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile25}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile26}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile27}</div>
-              </div>
-              <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex flex items-center justify-center'>
-                <div className='bg-[#123040] w-[31px] h-[34px] hexagon flex'>{tile28}</div>
-              </div>
+              {row4.map((tile) => {
+                return (
+                  <div className='bg-[var(--border-clr)] w-[34px] h-[38px] m-[2px] hexagon flex items-center justify-center'>
+                    <div className='bg-[#102531] w-[31px] h-[34px] hexagon flex'>{tile}</div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )) ||
+        (size === 'drop' && (
+          <div className='relative'>
+            <div className='flex'>
+              {row1.map(() => {
+                return <Tile />
+              })}
+            </div>
+            <div className='flex absolute top-[74px] left-[44px]'>
+              {row2.map(() => {
+                return <Tile />
+              })}
+            </div>
+            <div className='flex absolute top-[148px]'>
+              {row3.map(() => {
+                return <Tile />
+              })}
+            </div>
+            <div className='flex absolute top-[222px] left-[44px]'>
+              {row4.map(() => {
+                return <Tile />
+              })}
             </div>
           </div>
         ))}

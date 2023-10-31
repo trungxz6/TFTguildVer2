@@ -33,7 +33,7 @@ const items: TabsProps['items'] = [
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Team Builder</span>,
   },
   {
-    key: 'database',
+    key: 'database/champions',
     label: <span className='text-[var(--text-highlight-clr)] uppercase'>Database</span>,
   },
   {
