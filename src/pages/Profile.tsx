@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-interface bac {}
-
 const Profile = () => {
   const [searchText, setSearchText] = useState('')
   const [matchHistory, setMatchHistory] = useState<string[]>([])
